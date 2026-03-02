@@ -1,0 +1,147 @@
+﻿@{
+    var type = (ViewBag.Type ?? "csharp").ToString().ToLower();
+    string pageTitle = type switch
+    {
+        "csharp" => "JSON to C# Model Converter Online",
+        "typescript" => "JSON to TypeScript Interface Generator",
+        "sql" => "JSON to SQL Table Converter",
+        _ => "Free Online JSON Converter – Convert JSON to C# / SQL /typescript"
+    };
+}
+
+<div class="page-bg">
+  <div class="glass-card">
+
+        <!-- Header -->
+        <h1>@pageTitle</h1>
+        <p class="subtitle">Convert JSON to C# classes .typescript or SQL scripts online instantly. Free, fast, and easy JSON to C# / typescript / SQL converter.</p>
+       
+        <!-- Toolbar -->
+        <div class="converter-toolbar">
+            <select id="converterType">
+                <option value="csharp">C# Model</option>
+                <option value="typescript">TypeScript Interface</option>
+                <option value="sql">SQL Table</option>
+            </select>
+
+            <button id="convertBtn" class="btn btn-light">Convert</button>
+            <button id="clearBtn" class="btn btn-light">Clear</button>
+            <button id="copyBtn" class="btn btn-light">Copy Output</button>
+        </div>
+
+        <!-- Editors Section -->
+        <div class="editor-wrapper">
+
+            <!-- Input JSON -->
+            <div class="editor-card">
+            <div class="editor-box">
+                <label>Input JSON</label>
+                <div id="jsonInputEditor" class="editor"></div>
+            </div>
+            </div>
+            <!-- Output -->
+            <div class="editor-card">
+            <div class="editor-box">
+                <label>Generated Model</label>
+                <pre id="outputEditor" class="output-editor"></pre>
+            </div>
+        </div>
+        </div>
+        <p id="converterMessage" class="message" role="status" aria-live="polite"></p>
+        <section class="seo-content">
+            <h2>About JSON Converter</h2>
+            <p>
+                Our JSON to C# converter allows developers to generate C# classes instantly from JSON data.
+                This tool is useful for creating strongly typed models in ASP.NET applications.
+            </p>
+
+            <h2>How to Convert JSON to C#?</h2>
+            <ol>
+                <li>Paste your JSON in the editor.</li>
+                <li>Click Convert.</li>
+                <li>Copy the generated C# class.</li>
+            </ol>
+
+            <h2>Example</h2>
+<pre>
+{
+  "name": "Fatima",
+  "age": 25
+}
+</pre>
+            <section class="seo-content">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <button class="faq-question">Is this tool free?</button>
+                    <div class="faq-answer">
+                        <p>Yes, it is completely free.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is my JSON stored?</button>
+                    <div class="faq-answer">
+                        <p>No, all processing is done client-side.</p>
+                    </div>
+                </div>
+           </section>
+            <p>Check out our <a href="/json-formatter">JSON Formatter</a> or <a href="/json-converter">JSON Converter</a> for easy formatting.</p>
+
+        </section>
+           </div>
+</div>
+
+    <script>
+        const selectedType = "@type";
+        document.getElementById("converterType").value = selectedType;
+    </script>
+
+    <script src="~/js/json-converter.js"></script>
+@section HeadContent {
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="JSON to C#, SQL & TypeScript Converter Online - Free Code Generator">
+    <meta name="description" content="Convert JSON to C#, SQL table schema, and TypeScript interfaces instantly. Free online JSON code converter tool for developers. Fast, accurate, and secure.">
+    <meta name="keywords" content="JSON to C#, JSON to SQL, JSON to TypeScript, JSON to TS Interface, JSON to C# Class, JSON Code Converter, JSON to Model Generator">
+    <meta name="author" content="DevToolsZone">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com/json-converter" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JSON to C#, SQL & TypeScript Converter Online">
+    <meta property="og:description" content="Generate C# classes, SQL table scripts, and TypeScript interfaces from JSON instantly. 100% free developer tool.">
+    <meta property="og:url" content="https://yourdomain.com/json-converter">
+    <meta property="og:image" content="https://yourdomain.com/images/json-converter-preview.jpg">
+    <meta property="og:site_name" content="DevToolsZone">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JSON to C#, SQL & TypeScript Converter">
+    <meta name="twitter:description" content="Free online JSON converter tool to generate C# models, SQL schemas, and TypeScript interfaces instantly.">
+    <meta name="twitter:image" content="https://yourdomain.com/images/json-converter-preview.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "JSON Code Converter",
+            "url": "https://yourdomain.com/json-converter",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "All",
+            "description": "Free online JSON converter tool to convert JSON to C# classes, SQL table schema, and TypeScript interfaces.",
+            "featureList": [
+                "JSON to C# Class Generator",
+                "JSON to SQL Table Generator",
+                "JSON to TypeScript Interface Generator"
+            ],
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+    </script>
+}

@@ -1,0 +1,188 @@
+﻿@{
+    ViewData["Title"] = "Free Online JSON Formatter & Validator – Format, Minify & Validate JSON";
+}
+
+
+<div class="page-bg">
+    
+    <div class="glass-card">
+
+        <h1>Free Online JSON Formatter & Validator</h1>
+        <p class="subtitle">
+            Format, validate, and minify JSON online. Free & secure JSON formatting tool.
+        </p>
+
+        <div class="editor-wrapper">
+            <div class="editor-card">
+            <div class="editor-box">                
+                <label>Input JSON</label>
+                <textarea id="jsonInput" placeholder="Paste your JSON here..."></textarea>
+                    <div class="button-group" aria-label="JSON tool actions">
+                        <button id="btnFormat" class="btn btn-light" onclick="formatJson()" disabled>Format</button>
+                        <button id="btnMinify" class="btn btn-light" onclick="minifyJson()" disabled>Minify</button>
+                        <button id="btnValidate" class="btn btn-light" onclick="validateJson()" disabled>Validate</button>
+                        <button id="btnFix" class="btn btn-light" onclick="fixJson()" disabled>Fix Json</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="editor-card">
+            <div class="editor-box">
+                    <label>Formatted Output</label>
+                    <div id="jsonOutput"></div>
+                    <div id="editorFindBar" class="editor-find-bar hidden">
+
+                        <!-- Find Section -->
+                        <button onclick="closeFindBar()" class="icon-btn close-btn" title="Close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <div class="editor-card">
+                        <div class="find-group">
+                            <div class="input-wrapper">
+                                <input type="text" id="editorFind" placeholder="Find..." autocomplete="off" />
+                                <button id="searchBtn" class="icon-btn search-btn" title="Search">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+
+                            <button onclick="findPrev()" class="icon-btn nav-btn" title="Previous">
+                                <i class="fa fa-chevron-up"></i>
+                            </button>
+                            <button onclick="findNext()" class="icon-btn nav-btn" title="Next">
+                                <i class="fa fa-chevron-down"></i>
+                            </button>
+
+                            <span id="matchCount" class="match-counter">0 / 0</span>
+
+                            
+                        </div>
+
+                        <!-- Replace Section -->
+                        <div class="replace-group" id="replaceGroup">
+                            <div class="input-wrapper">
+                                <input type="text" id="editorReplace" placeholder="Replace..." />
+                                <div class="dropdown">
+                                    <button class="btn-light btn-dropdown">Actions <i class="fa fa-caret-down"></i></button>
+                                    <div class="dropdown-content">
+                                        <a href="#" onclick="replaceCurrent()">Replace</a>
+                                        <a href="#" onclick="replaceAll()">Replace All</a>
+                                        <a href="#" onclick="replaceKeyValue()">Replace Key-Value</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="button-group" aria-label="JSON tool actions">
+                        <button id="btnClear" class="btn btn-light" onclick="clearFields()" disabled>Clear</button>
+                        <button id="btnCopy" class="btn btn-light" onclick="copyOutput()" disabled>Copy</button>
+                        <button id="btnExpand" class="btn btn-light" disabled>Expand</button>
+                       </div>
+                </div>
+            </div>
+
+        </div>
+        
+
+
+         <p id="formattermessage" class="message" role="status" aria-live="polite"></p>
+        <section class="seo-content">
+            <h2>About JSON Formatter & Validator</h2>
+            <p>
+                Our online JSON Formatter helps developers and non-developers quickly format, minify, and validate JSON data.
+                The formatted JSON is easy to read, editable, and can be copied or downloaded instantly.
+            </p>
+
+            <h2>How to Use the JSON Formatter</h2>
+            <ol>
+                <li>Paste your JSON into the Input JSON box.</li>
+                <li>Click "Format" to beautify the JSON.</li>
+                <li>Use "Minify" to compress JSON for production.</li>
+                <li>"Validate" will check if your JSON is correct.</li>
+                <li>Copy or expand/collapse JSON for better readability.</li>
+            </ol>
+
+            <h2>Benefits of Using Our Tool</h2>
+            <ul>
+                <li>Instant formatting and validation</li>
+                <li>Clean and readable output</li>
+                <li>No data is stored on the server</li>
+                <li>Works on all modern browsers and devices</li>
+            </ul>
+
+            <section class="seo-content">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question">Is this JSON formatter safe?</button>
+                    <div class="faq-answer">
+                        <p>Yes, all formatting happens locally in your browser. Your data is never sent to any server.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Can I use it for large JSON files?</button>
+                    <div class="faq-answer">
+                        <p>Yes, it handles large JSON files efficiently and supports expandable/collapsible tree view.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Can I switch between Code and Tree mode?</button>
+                    <div class="faq-answer">
+                        <p>Yes, you can switch modes using the mode selector in the editor.</p>
+                    </div>
+                </div>
+
+            </section>
+             <p>Check out our <a href="/json-comparer">JSON Comparer</a> or <a href="/json-converter">JSON Converter</a> for easy formatting.</p>
+
+        </section>
+    </div>
+</div>
+
+<script src="~/js/json-formatter.js"></script>
+@section HeadContent {
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Free JSON Formatter & Validator Online - DevToolsZone">
+    <meta name="description" content="Format, validate, beautify and minify JSON instantly with our free online JSON Formatter tool. Fast, secure, and easy-to-use JSON validator with error detection.">
+    <meta name="keywords" content="JSON Formatter, JSON Validator, JSON Beautifier, JSON Minify, JSON Viewer, Online JSON Tool, Free JSON Formatter">
+    <meta name="author" content="DevToolsZone">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com/json-formatter" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free JSON Formatter & Validator Online">
+    <meta property="og:description" content="Beautify, validate, and minify JSON instantly. 100% free online JSON Formatter with error highlighting.">
+    <meta property="og:url" content="https://yourdomain.com/json-formatter">
+    <meta property="og:image" content="https://yourdomain.com/images/json-formatter-preview.jpg">
+    <meta property="og:site_name" content="DevToolsZone">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free JSON Formatter & Validator Online">
+    <meta name="twitter:description" content="Fast and secure JSON Formatter tool to beautify, validate and minify JSON data online.">
+    <meta name="twitter:image" content="https://yourdomain.com/images/json-formatter-preview.jpg">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@@type": "WebApplication",
+            "name": "JSON Formatter & Validator",
+            "url": "https://yourdomain.com/json-formatter",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "All",
+            "description": "Free online JSON Formatter tool to validate, beautify and minify JSON instantly.",
+            "offers": {
+                "@@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+    </script>
+}

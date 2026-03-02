@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "About Us - DevToolsZone";
+    Layout = "_Layout"; // or your layout page
+}
+
+<section class="page-bg about-page">
+    <div class="container">
+
+        <h1>About DevToolsZone</h1>
+        <p class="subtitle">
+            Your free online toolkit for developers and tech enthusiasts. From JSON formatting to calculators, we make your workflow faster and easier.
+        </p>
+
+        <div class="about-content">
+            <div class="about-card">
+                <h2>Our Mission</h2>
+                <p>
+                    At DevToolsZone, our mission is to provide **free, reliable, and easy-to-use web tools** for developers, students, and professionals.
+                    We strive to simplify complex tasks like formatting JSON, validating code, or performing calculations.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <h2>Our Vision</h2>
+                <p>
+                    Our vision is to become the **go-to platform** for online developer tools and utilities. We want to empower individuals and teams
+                    to work smarter, faster, and more efficiently.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <h2>Why Choose Us?</h2>
+                <ul>
+                    <li>100% Free & Secure Online Tools</li>
+                    <li>Simple & User-Friendly Interface</li>
+                    <li>Fast and Reliable Performance</li>
+                    <li>SEO-Optimized & Accessible From Anywhere</li>
+                </ul>
+            </div>
+
+            <div class="about-card">
+                <h2>Our Future Plans</h2>
+                <p>
+                    We are constantly working to expand our toolkit. Upcoming features include calculators, converters, validators, and other utilities
+                    designed to save you time and enhance productivity.
+                </p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3>Get In Touch</h3>
+            <p>
+                Have questions, suggestions, or want to collaborate? Visit our <a href="/contact">Contact Us</a> page and drop us a message!
+            </p>
+        </div>
+
+    </div>
+</section>
+<script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@@type": "Question",
+          "name": "What is DevToolsZone?",
+          "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "DevToolsZone is a free online platform offering developer tools and utilities like JSON formatters, validators, calculators, and more."
+          }
+        },
+        {
+          "@@type": "Question",
+          "name": "Are the tools on DevToolsZone free to use?",
+          "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "Yes, all tools are completely free and secure, accessible online without registration."
+          }
+        },
+        {
+          "@@type": "Question",
+          "name": "Can I request new tools on DevToolsZone?",
+          "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "Absolutely! You can contact us through the Contact page to suggest new tools or features."
+          }
+        },
+        {
+          "@@type": "Question",
+          "name": "Is my data safe on DevToolsZone?",
+          "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "Yes, we do not store your data permanently. All tools process data in the browser or securely online."
+          }
+        }
+      ]
+    }
+</script>
+@section HeadContent {
+    <meta name="description" content="Learn about DevToolsZone, your free online toolkit for developers. Format JSON, validate data, calculate quickly, and more.">
+    <meta name="keywords" content="DevToolsZone, developer tools, JSON formatter, online utilities, free tools, web tools">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="About DevToolsZone - Free Online Developer Tools">
+    <meta property="og:description" content="DevToolsZone offers free online tools for developers including JSON formatter, validators, calculators and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/about">
+    <meta property="og:image" content="https://yourdomain.com/images/seo-about.jpg">
+    <meta property="og:site_name" content="DevToolsZone">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About DevToolsZone - Free Online Developer Tools">
+    <meta name="twitter:description" content="DevToolsZone offers free online tools for developers including JSON formatter, validators, calculators and more.">
+    <meta name="twitter:image" content="https://yourdomain.com/images/seo-about.jpg">
+}

@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "Frequently Asked Questions - DevToolsZone";
+}
+
+<section class="page-bg">
+    <div class="glass-card faq-card">
+        <h1>Frequently Asked Questions</h1>
+        <p class="subtitle">Find answers to the most common questions about our tools and services.</p>
+
+        <div class="container">
+
+            <div class="faq-item">
+                <button class="faq-question">How do I format my JSON?</button>
+                <div class="faq-answer">
+                    <p>Paste your JSON into the JSON Formatter tool, then click the Format button. Invalid JSON will display an error message with the line number.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I compare two JSON files?</button>
+                <div class="faq-answer">
+                    <p>Yes! Use the JSON Comparer tool to highlight differences between two JSON objects easily.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Are your tools free to use?</button>
+                <div class="faq-answer">
+                    <p>Absolutely. All our online tools are completely free and secure.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I use these tools on mobile devices?</button>
+                <div class="faq-answer">
+                    <p>Yes, the website is fully responsive and works on desktops, tablets, and mobile devices.</p>
+                </div>
+            </div>
+
+            <!-- Add more FAQs here -->
+        </div>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const isOpen = button.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+            document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('active'));
+
+            // Toggle current
+            if (!isOpen) {
+                answer.style.display = 'block';
+                button.classList.add('active');
+            }
+        });
+    });
+</script>
+@section HeadContent {
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="FAQ - DevToolsZone | JSON Tools, Converter & Comparer Help">
+    <meta name="description" content="Find answers to frequently asked questions about our JSON Formatter, JSON Comparer, JSON Converter and other free online developer tools.">
+    <meta name="keywords" content="DevToolsZone FAQ, JSON Formatter Help, JSON Comparer Questions, JSON Converter Support, Online Developer Tools FAQ">
+    <meta name="author" content="DevToolsZone">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://yourdomain.com/faq" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Frequently Asked Questions - DevToolsZone">
+    <meta property="og:description" content="Get answers about our JSON Formatter, Comparer, Converter and other free developer tools.">
+    <meta property="og:url" content="https://yourdomain.com/faq">
+    <meta property="og:image" content="https://yourdomain.com/images/faq-preview.jpg">
+    <meta property="og:site_name" content="DevToolsZone">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DevToolsZone FAQ">
+    <meta name="twitter:description" content="Common questions about our free JSON tools and developer utilities.">
+    <meta name="twitter:image" content="https://yourdomain.com/images/faq-preview.jpg">
+
+    <!-- FAQ Structured Data (Rich Snippets) -->
+    <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@@type": "Question",
+                    "name": "Is the JSON Formatter free to use?",
+                    "acceptedAnswer": {
+                        "@@type": "Answer",
+                        "text": "Yes, our JSON Formatter is completely free and allows you to validate, beautify, and minify JSON instantly."
+                    }
+                },
+                {
+                    "@@type": "Question",
+                    "name": "How does the JSON Comparer work?",
+                    "acceptedAnswer": {
+                        "@@type": "Answer",
+                        "text": "The JSON Comparer allows you to compare two JSON files side by side and highlights the exact differences between them."
+                    }
+                },
+                {
+                    "@@type": "Question",
+                    "name": "Can I convert JSON to C# or TypeScript?",
+                    "acceptedAnswer": {
+                        "@@type": "Answer",
+                        "text": "Yes, our JSON Converter tool lets you generate C# classes, SQL table schema, and TypeScript interfaces from JSON instantly."
+                    }
+                },
+                {
+                    "@@type": "Question",
+                    "name": "Is my data secure?",
+                    "acceptedAnswer": {
+                        "@@type": "Answer",
+                        "text": "Yes, all tools run in your browser and we do not store your JSON data on our servers."
+                    }
+                }
+            ]
+        }
+    </script>
+}

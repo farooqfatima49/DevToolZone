@@ -1,0 +1,71 @@
+﻿@model ContactViewModel
+
+<section class="page-bg">
+    <div class="glass-card contact-card">
+        <h1>Contact Us</h1>
+        <p class="subtitle">Have questions or feedback? Get in touch with us and we'll respond promptly.</p>
+
+        <div id="responseMessage"></div>
+
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="Name">Your Name</label>
+                <input type="text" id="Name" placeholder="John Doe" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Your Email</label>
+                <input type="email" id="Email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Subject">Subject</label>
+                <input type="text" id="Subject" placeholder="Subject" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Message">Message</label>
+                <textarea id="Message" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-light">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const data = {
+            Name: document.getElementById("Name").value,
+            Email: document.getElementById("Email").value,
+            Subject: document.getElementById("Subject").value,
+            Message: document.getElementById("Message").value
+        };
+
+        const responseBox = document.getElementById("responseMessage");
+        responseBox.innerHTML = "Sending...";
+
+        try {
+            const response = await fetch("/contact/send", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                responseBox.innerHTML = `<div class="alert-success">${result.message}</div>`;
+                document.getElementById("contactForm").reset();
+            } else {
+                responseBox.innerHTML = `<div class="alert-error">Something went wrong!</div>`;
+            }
+
+        } catch (error) {
+            responseBox.innerHTML = `<div class="alert-error">Server error.</div>`;
+        }
+    });
+</script>

@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DevToolsZone</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />   
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Include Ace Editor -->
+    <script src="~/lib/json-editor/ace.js"></script>
+    <script src="~/lib/json-editor/ext-language_tools.js"></script>
+    <!-- JSONEditor -->
+    <link href="https://cdn.jsdelivr.net/npm/jsoneditor@9.10.0/dist/jsoneditor.min.css" rel="stylesheet" />
+    <script src="~/lib/json-editor/jsoneditor.min.js"></script>
+
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Free online JSON formatter, validator and minifier tool. Format JSON instantly in your browser.,Free online JSON to C# class converter. Generate C# models instantly from JSON.
+    ,Convert JSON to TypeScript interfaces online for your Angular or React projects.,Generate SQL table scripts automatically from JSON data online.,Online JSON Converter Tool">
+    <meta name="keywords" content="json formatter, json validator, json minify online, free json tool, online JSON tool, json converter">
+    @RenderSection("HeadContent", required: false)
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DevToolsZone</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                       @*  <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li> *@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="JsonFormatter" asp-action="Index">JSON Formatter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="JsonFormatter" asp-action="Comparer">JSON Comparer</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropbtn" asp-area="" asp-controller="JsonFormatter" asp-action="Converter">JSON Converter</a>
+                            <ul class="dropdown-content">
+                                <li><a href="/json-to-csharp" class="droplnk">JSON to C#</a></li>
+                                <li><a href="/json-to-typescript" class="droplnk">JSON to TypeScript</a></li>
+                                <li><a href="/json-to-sql" class="droplnk">JSON to SQL</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="top-bar">
+                        <div class="theme-toggle">
+                            <span>🌞</span>
+                            <label class="switch">
+                                <input type="checkbox" id="themeToggle">
+                                <span class="slider"></span>
+                            </label>
+                            <span>🌙</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer border-top">
+        <div class="container footer-container">
+
+            <!-- About -->
+            <div class="footer-column" style="line-height: normal;text-wrap: auto;">
+                <h5>DevToolsZone</h5>
+                <p>
+                    DevToolsZone provides free online developer tools including
+                    JSON formatter, JSON validator, converters, and productivity
+                    utilities designed to help developers work faster and smarter.
+                </p>
+            </div>
+
+            <!-- Tools -->
+            <div class="footer-column">
+                <h6>Developer Tools</h6>
+                <ul class="footer-links">
+                    <li><a href="/json-formatter">JSON Formatter</a></li>
+                    <li><a href="/json-comparer">JSON Comparer</a></li>
+                    <li class="dropdown">
+                        <a href="/json-converter" class="dropbtn">JSON Converter</a>
+                        <ul class="dropdown-content">
+                            <li><a href="/json-to-csharp" class="droplnk">JSON to C#</a></li>
+                            <li><a href="/json-to-typescript" class="droplnk">JSON to TypeScript</a></li>
+                            <li><a href="/json-to-sql" class="droplnk">JSON to SQL</a></li>
+                        </ul>
+                    </li>
+                  </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="footer-column">
+                <h6>Resources</h6>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-column">
+                <h6>Quick Access</h6>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                   @*  <li><a href="/tools">All Tools</a></li> *@
+                    <li><a href="/faq">FAQ</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 DevToolsZone — Free Online Developer Tools
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js?v=1323" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
