@@ -1,0 +1,20 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/DevToolsZone/.vs/DevToolsZone/config
+/DevToolsZone/.vs/DevToolsZone/DesignTimeBuild
+/DevToolsZone/.vs/DevToolsZone/FileContentIndex
+/DevToolsZone/.vs/DevToolsZone/v17
+/DevToolsZone/.vs/ProjectEvaluation
+/DevToolsZone/bin/Debug/net8.0
+/DevToolsZone/obj
+/Services/bin/Debug/net8.0
+/Services/obj
+/DevToolsWeb/.vs
+/DevToolsWeb/DevToolsWeb/bin/Debug/net8.0
+/DevToolsWeb/DevToolsWeb/obj
+/DevToolsWeb/DevToolsZone.Application/obj
+/DevToolsWeb/DevToolsZone.Infrastructure/bin/Debug/net8.0
+/DevToolsWeb/DevToolsZone.Infrastructure/obj
