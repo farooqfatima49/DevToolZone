@@ -18,3 +18,5 @@
 /DevToolsWeb/DevToolsZone.Application/obj
 /DevToolsWeb/DevToolsZone.Infrastructure/bin/Debug/net8.0
 /DevToolsWeb/DevToolsZone.Infrastructure/obj
+/DevToolsWeb/DevToolsZone.Application/bin/Debug/net8.0/DevToolsZone.Application.dll
+/DevToolsWeb/DevToolsZone.Application/bin/Debug/net8.0/DevToolsZone.Application.pdb
