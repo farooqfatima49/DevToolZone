@@ -865,9 +865,11 @@ button {
 .output-editor {
     height: 500px;
     overflow: auto;
+    text-wrap: auto;
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ddd;
+    color: #333
 }
 .jsoneditor {
     border: 1px solid #ddd !important
@@ -1260,3 +1262,93 @@ seo-content {
         border-color: #6ab7ff;
         box-shadow: 0 0 5px rgba(106, 183, 255, 0.4);
     }
+
+.download-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.download-btn {
+   background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.download-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 120px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    z-index: 10;
+}
+
+    .download-menu button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: white;
+        text-align: left;
+        cursor: pointer;
+    }
+
+        .download-menu button:hover {
+            background: #f1f1f1;
+        }
+
+.download-dropdown:hover .download-menu {
+    display: block;
+}
+.download-dropdown:hover .download-menu {
+    display: block;
+}
+
+.download-btn:disabled + .download-menu {
+    display: none;
+    pointer-events: none;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/*.logo {
+    height: 40px;
+    margin-right: 8px;
+}*/
+/*.logo {
+    height: 10%;
+    width: 10%;
+}*/
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+/* Allow logo to go outside navbar */
+
+
+/* Floating logo */
+.logo-wrapper {
+    position: absolute;
+    top: -35px; /* controls how much it comes out */
+   
+    z-index: 1050;
+}
+
+/* Logo image */
+.logo {
+    height: 185px;
+    width: auto;
+    display: block;
+}
+
+/* Prevent menu overlapping logo */
+.navbar .container-fluid {
+    padding-left: 200px;
+}

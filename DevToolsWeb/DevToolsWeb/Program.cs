@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.ResponseCompression;
 using Services;
 using Services.Email;
+using System.IO.Compression;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,17 @@ builder.Services.Configure<EmailSettings>(
     builder.Configuration.GetSection("EmailSettings"));
 
 builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true; // Important
+    options.Providers.Add<GzipCompressionProvider>();
+});
+
+// Set compression level
+builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+{
+    options.Level = CompressionLevel.Fastest; // or Optimal
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -74,4 +87,14 @@ app.MapControllerRoute(
     pattern: "faq",
     defaults: new { controller = "Home", action = "Faq" }
 );
+app.MapControllerRoute(
+    name: "base64converter",
+    pattern: "base64-encoder-decoder",
+    defaults: new { controller = "BaseConverter", action = "Index" }
+);
+app.UseResponseCompression();
+
+//app.UseStaticFiles();
+
+app.MapControllers();
 app.Run();

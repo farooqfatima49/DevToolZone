@@ -2,40 +2,61 @@
 // Initialize JSON Editor
 // ================================
 
-const container = document.getElementById("jsonInputEditor");
+const container = document.getElementById("jsonInput");
 
 const editor = new JSONEditor(container, {
     mode: "code",
     mainMenuBar: false,
-    statusBar: true
+    statusBar: true,
+    onChange: function () {
+        toggleButtons();
+    }
+    
 });
 
 // ================================
 // Button Events
 // ================================
+const btnConvert = document.getElementById("convertBtn");
+const btnClear = document.getElementById("clearBtn");
+const btnCopy = document.getElementById("copyBtn");
+const btnDownload = document.getElementById("btnDownload");
+const textareaButtons = [btnConvert, btnClear, btnCopy, btnDownload];
+btnConvert.addEventListener("click", convertJson);
 
-document.getElementById("convertBtn")
-    .addEventListener("click", convertJson);
-
-document.getElementById("clearBtn")
-    .addEventListener("click", function () {
-        editor.set({});
-        document.getElementById("outputEditor").textContent = "";
-    });
-
-document.getElementById("copyBtn")
-    .addEventListener("click", function () {
+btnClear.addEventListener("click", function () {
+    editor.set({});
+    document.getElementById("outputEditor").textContent = "";
+    toggleButtons()
+});
+btnCopy.addEventListener("click", function () {
         navigator.clipboard.writeText(
             document.getElementById("outputEditor").textContent
         );
     });
 
+function toggleButtons() {
+    let hasText = false;
+    try {
+        const text = editor.getText().trim();
+        hasText = text !== "" && text !== "{}";
+
+    } catch {
+        hasText = false;
+    }
+
+    textareaButtons.forEach(btn => {
+        btn.disabled = !hasText;
+        btn.style.opacity = hasText ? 1 : 0.5;
+        btn.style.cursor = hasText ? "pointer" : "not-allowed";
+    });
+  
+}
 // ================================
 // Main Convert Function
 // ================================
 
 function convertJson() {
-
     const type = document.getElementById("converterType").value;
 
     try {
@@ -53,6 +74,10 @@ function convertJson() {
 
             case "sql":
                 output = generateSQL(json, "MyTable");
+                break;
+
+            case "xml":
+                output = formatXml(jsonToXml(json, "root"));
                 break;
         }
 
@@ -203,7 +228,81 @@ function mapSQLType(value) {
 // ================================
 // Helpers
 // ================================
+function jsonToXml(obj, rootName) {
 
+    function convert(obj) {
+        let xml = "";
+
+        for (let key in obj) {
+
+            if (Array.isArray(obj[key])) {
+
+                obj[key].forEach(item => {
+                    xml += `<${key}>${convert(item)}</${key}>`;
+                });
+
+            } else if (typeof obj[key] === "object" && obj[key] !== null) {
+
+                xml += `<${key}>${convert(obj[key])}</${key}>`;
+
+            } else {
+
+                xml += `<${key}>${obj[key]}</${key}>`;
+
+            }
+        }
+
+        return xml;
+    }
+
+    return `<${rootName}>${convert(obj)}</${rootName}>`;
+}
+function formatXml(xml) {
+    let formatted = '';
+    const reg = /(>)(<)(\/*)/g;
+    xml = xml.replace(reg, '$1\r\n$2$3');
+    let pad = 0;
+
+    xml.split('\r\n').forEach(node => {
+        let indent = 0;
+
+        if (node.match(/.+<\/\w[^>]*>$/)) {
+            indent = 0;
+        } else if (node.match(/^<\/\w/)) {
+            if (pad !== 0) pad -= 1;
+        } else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
+            indent = 1;
+        }
+
+        formatted += new Array(pad + 1).join('  ') + node + '\r\n';
+        pad += indent;
+    });
+
+    return formatted;
+}
+function download(type) {
+    const output = document.getElementById("outputEditor").textContent 
+    downloadOutput(type, output)
+}
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+let fileInput = document.getElementById("jFConverterInput")
+fileInput.addEventListener("change", function (event) {
+       const file = event.target.files[0];
+    validateFileInput(file, "converterMessage")
+        
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            try {
+                uploadJsonFile(event, editor, fileInput);
+                toggleButtons(); // enable buttons                
+            } catch (err) {
+                showMessage("Invalid JSON file", "err", "convertermessage");
+                
+            }
+        };
+
+        reader.readAsText(file);
+});

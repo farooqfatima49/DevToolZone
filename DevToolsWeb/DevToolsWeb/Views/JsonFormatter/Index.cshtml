@@ -16,7 +16,8 @@
             <div class="editor-card">
             <div class="editor-box">                
                 <label>Input JSON</label>
-                <textarea id="jsonInput" placeholder="Paste your JSON here..."></textarea>
+                    <div id="jsonInput" class="editor"></div>
+                  @*   <textarea id="jsonInput" placeholder="Paste or upload JSON here..."></textarea> *@
                     <div class="button-group" aria-label="JSON tool actions">
                         <button id="btnFormat" class="btn btn-light" onclick="formatJson()" disabled>Format</button>
                         <button id="btnMinify" class="btn btn-light" onclick="minifyJson()" disabled>Minify</button>
@@ -24,6 +25,12 @@
                         <button id="btnFix" class="btn btn-light" onclick="fixJson()" disabled>Fix Json</button>
 
                     </div>
+                    <div class="mb-3">
+                        <label class="btn btn-light">
+                            Upload JSON File
+                            <input type="file" id="jsonFileInput" hidden accept=".json">
+                        </label>
+                    </div>                   
                 </div>
             </div>
             <div class="editor-card">
@@ -74,6 +81,15 @@
                         </div>
                     </div>
                     <div class="button-group" aria-label="JSON tool actions">
+                        <div class="download-dropdown">
+                            <button class="download-btn btn btn-light" id="btnDownload" disabled>Download ▾</button>
+
+                            <div class="download-menu" disabled>
+                                <button onclick="download('txt')">TXT</button>
+                                <button onclick="download('json')">JSON</button>
+                               
+                            </div>
+                        </div>
                         <button id="btnClear" class="btn btn-light" onclick="clearFields()" disabled>Clear</button>
                         <button id="btnCopy" class="btn btn-light" onclick="copyOutput()" disabled>Copy</button>
                         <button id="btnExpand" class="btn btn-light" disabled>Expand</button>

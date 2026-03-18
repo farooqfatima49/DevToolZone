@@ -54,3 +54,65 @@ function showMessage(text, type, id) {
     msg.innerText = text;
     msg.style.color = type == "err" ? "red" :"green";
 }
+function uploadJsonFile(event, jsonEditor, input) {
+    const json = JSON.parse(event.target.result);   // validate JSON
+    let updatedJson = JSON.stringify(json, null, 4); // pretty format
+    jsonEditor.updateText(updatedJson);
+    input.value = "";
+}
+function validateFileInput(file,msgId) {
+    if (!file) return;
+    if (!file.name.endsWith(".json")) {
+        showMessage("Please upload a valid JSON file.", "err", msgId)
+        return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+        showMessage("File too large. Max 2MB allowed.", "err", msgId)
+        return;
+    }
+}
+function downloadOutput(type,output) {
+    debugger
+   
+    if (!output) {
+        alert("Nothing to download");
+        return;
+    }
+
+    let fileName = "output";
+    let mimeType = "text/plain";
+    let data = output;
+
+    if (type === "json") {
+        try {
+            data = JSON.stringify(JSON.parse(output), null, 2);
+            mimeType = "application/json";
+            fileName += ".json";
+        } catch {
+            alert("Invalid JSON");
+            return;
+        }
+    }
+
+    if (type === "xml") {
+        mimeType = "application/xml";
+        fileName += ".xml";
+    }
+
+    if (type === "txt") {
+        fileName += ".txt";
+    }
+
+    const blob = new Blob([data], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+}

@@ -14,19 +14,31 @@
                 <div class="editor-box">
                     <label>First JSON</label>
                     <div id="editor1" class="editor"></div>
+                    <div class="mb-3">
+                        <label class="btn btn-light">
+                            Upload JSON File
+                            <input type="file" id="jsonFileInput1" hidden accept=".json">
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="editor-card">
                 <div class="editor-box">
                     <label>Second JSON</label>
                     <div id="editor2" class="editor"></div>
+                    <div class="mb-3">
+                        <label class="btn btn-light">
+                            Upload JSON File
+                            <input type="file" id="jsonFileInput2" hidden accept=".json">
+                        </label>
+                    </div>
                 </div>
             </div>
 
         </div>
         <div class="button-group">
-            <button onclick="compareJson()" class="btn btn-light">Compare JSONs</button>
-            <button onclick="clearEditors()" class="btn btn-light">Clear</button>
+            <button onclick="compareJson()" class="btn btn-light" id="btnCompare" disabled>Compare JSONs</button>
+            <button onclick="clearEditors()" class="btn btn-light" id="btnClear" disabled>Clear</button>
         </div>
         <p id="comparermessage" class="message" role="status" aria-live="polite"></p>
         <section class="seo-content">

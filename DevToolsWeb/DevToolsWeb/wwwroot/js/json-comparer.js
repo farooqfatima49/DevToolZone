@@ -3,7 +3,10 @@ const container1 = document.getElementById("editor1");
 const container2 = document.getElementById("editor2");
 const options = {
     mode: "code",
-    mainMenuBar: false // default Code mod
+    mainMenuBar: false, // default Code mod
+    onChange: function () {
+        toggleButtons();
+    }
 };
 const editor1 = new JSONEditor(container1, options);
 const editor2 = new JSONEditor(container2, options);
@@ -23,6 +26,28 @@ function clearEditors() {
     editor1.updateText('');
     editor2.updateText('');
     document.getElementById('comparermessage').innerText = '';
+    toggleButtons()
+}
+const btnCompare = document.getElementById("btnCompare");
+const btnClear = document.getElementById("btnClear");
+const comparerButtons = [btnCompare, btnClear];
+function toggleButtons() {
+    let hasText = false;
+
+    try {
+        const text1 = editor1.getText().trim();
+        const text2 = editor2.getText().trim();
+        hasText = text1 !== "" && text2 !== "" && text1 !== "{}" && text2 !== "{}";
+
+    } catch {
+        hasText = false;
+    }
+
+    comparerButtons.forEach(btn => {
+        btn.disabled = !hasText;
+        btn.style.opacity = hasText ? 1 : 0.5;
+        btn.style.cursor = hasText ? "pointer" : "not-allowed";
+    });
 }
 
 function compareJson() {    
@@ -99,31 +124,51 @@ function highlightDifferences(text1, text2) {
         }
     }
 }
-//function highlightDifferences(text1, text2) {
-//    const lines1 = text1.split("\n");
-//    const lines2 = text2.split("\n");
+let fileInput1 = document.getElementById("jsonFileInput1")
+fileInput1.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    validateFileInput(file, "comparermessage");
+    //if (!file) return;
 
-//    const ace1 = editor1.aceEditor;
-//    const ace2 = editor2.aceEditor;
+    //if (!file.name.endsWith(".json")) {
+    //    alert("Please upload a valid JSON file.");
+    //    return;
+    //}
+    //if (file.size > 2 * 1024 * 1024) {
+    //    alert("File too large. Max 2MB allowed.");
+    //    return;
+    //}
+    const reader = new FileReader();
 
-//    const Range = ace.require("ace/range").Range; // use global ace
+    reader.onload = function (event) {
+        uploadJsonFile(event, editor1, fileInput1);
+        toggleButtons()
+    };
 
-//    // Remove previous markers
-//    markers1.forEach(id => ace1.session.removeMarker(id));
-//    markers2.forEach(id => ace2.session.removeMarker(id));
-//    markers1 = [];
-//    markers2 = [];
+    reader.readAsText(file);
+});
 
-//    const maxLines = Math.max(lines1.length, lines2.length);
 
-//    for (let i = 0; i < maxLines; i++) {
-//        if (lines1[i] !== lines2[i]) {
-//            if (lines1[i] !== undefined) {
-//                markers1.push(ace1.session.addMarker(new Range(i, 0, i, 1), "diff-highlight", "fullLine"));
-//            }
-//            if (lines2[i] !== undefined) {
-//                markers2.push(ace2.session.addMarker(new Range(i, 0, i, 1), "diff-highlight", "fullLine"));
-//            }
-//        }
-//    }
-//}
+let fileInput2 = document.getElementById("jsonFileInput2")
+fileInput2.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    validateFileInput(file, "comparermessage");
+    //if (!file) return;
+
+    //if (!file.name.endsWith(".json")) {
+    //    alert("Please upload a valid JSON file.");
+    //    return;
+    //}
+    //if (file.size > 2 * 1024 * 1024) {
+    //    alert("File too large. Max 2MB allowed.");
+    //    return;
+    //}
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+        uploadJsonFile(event, editor2, fileInput2);
+        toggleButtons();
+    };
+
+    reader.readAsText(file);
+});

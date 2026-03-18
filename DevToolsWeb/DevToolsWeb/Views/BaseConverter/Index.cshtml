@@ -1,0 +1,160 @@
+﻿@{
+    ViewData["Title"] = "Free Online JSON Formatter & Validator – Format, Minify & Validate JSON";
+}
+<div class="page-bg">
+    <div class="glass-card">
+        <h1>Base64 Encoder / Decoder</h1>
+        <p class="subtitle">
+            Encode plain text into Base64 or decode Base64 into readable text instantly.
+        </p>
+        <div class="editor-wrapper">
+            <div class="editor-card">
+                <div class="editor-box">
+                    <textarea id="inputText" placeholder="Enter text or Base64 string here..."></textarea>
+                    <div class="button-group" aria-label="Encoder tool actions">
+                        <button onclick="encodeBase64()" class="btn btn-light" id="btnEncode" disabled>Encode</button>
+                        <button onclick="decodeBase64()" class="btn btn-light" id="btnDecode" disabled>Decode</button>
+                        <button onclick="clearFields(0)" class="btn btn-light" id="btnClear" disabled>Clear</button>
+
+                    </div>
+                    <div class="mb-3">
+                        <label class="btn btn-light">
+                            Upload File
+                            <input type="file" id="encoderInput" hidden accept=".txt,.base64,.json">
+                        </label>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="editor-card">
+                <div class="editor-box">
+                   <textarea id="outputText" placeholder="Result will appear here..."></textarea>
+                    <div class="button-group" aria-label="JSON tool actions">
+                        @* <button onclick="downloadOutput()" class="btn btn-light" id="btnDownload" disabled>Download</button> *@
+                        <div class="download-dropdown">
+                            <button class="download-btn btn btn-light" id="btnDownload" disabled>Download ▾</button>
+                            <div class="download-menu">
+                                <button onclick="download('txt')">TXT</button>                                
+                            </div>
+                        </div><button onclick="copyOutput()" class="btn btn-light" id="btnCopy" disabled>Copy</button>
+                        <button onclick="clearFields(1)" class="btn btn-light" id="btnOutputClear" disabled>Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p id="encodermessage" class="message" role="status" aria-live="polite"></p>
+        <section class="seo-content">
+
+            <h2>What is Base64 Encoding?</h2>
+
+            <p>
+                Base64 encoding converts binary or text data into a readable ASCII string format.
+                It is widely used in web development for encoding data in URLs, APIs, and email attachments.
+            </p>
+
+            <h2>How to Use the Base64 Encoder Decoder</h2>
+
+            <ol>
+                <li>Paste your text or Base64 string in the input box.</li>
+                <li>Click <strong>Encode</strong> to convert text into Base64.</li>
+                <li>Click <strong>Decode</strong> to convert Base64 back to readable text.</li>
+                <li>Copy the result using the copy button.</li>
+            </ol>
+
+            <h2>Common Uses of Base64</h2>
+
+            <ul>
+                <li>Encoding API credentials</li>
+                <li>Email attachments</li>
+                <li>Embedding images in HTML or CSS</li>
+                <li>Secure data transfer</li>
+            </ul>
+            <section class="seo-content">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <button class="faq-question">What is Base64 encoding?</button>
+                    <div class="faq-answer">
+                        <p>
+                            Base64 encoding converts binary or text data into an ASCII string format using a specific character set.
+                            It is commonly used to safely transmit data through systems that only support text.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is Base64 encoding secure?</button>
+                    <div class="faq-answer">
+                        <p>
+                            No. Base64 encoding is not encryption. It only converts data into a different format.
+                            Anyone can decode Base64 back to its original form.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Where is Base64 used?</button>
+                    <div class="faq-answer">
+                        <p>
+                            Base64 is widely used in web development, APIs, email attachments, and embedding images in HTML or CSS.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How do I decode a Base64 string?</button>
+                    <div class="faq-answer">
+                        <p>
+                            Paste the Base64 encoded text into the input field and click the <strong>Decode</strong> button.
+                            The original text will appear in the output area.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Can I encode files using Base64?</button>
+                    <div class="faq-answer">
+                        <p>
+                            Yes. You can upload a file using the upload button, and the tool will convert its content into Base64 format.
+                        </p>
+                    </div>
+                </div>
+
+                
+            </section>
+            <p>Check out our <a href="/json-formatter">JSON Formatter</a> or <a href="/json-to-csharp">JSON to C# Converter</a> for easy formatting.</p>
+
+        </section>
+    </div>
+</div>
+<script src="~/js/base64encoder.js"></script>
+@section HeadContent {
+
+    <title>Base64 Encode Decode Online | Free Base64 Encoder Decoder Tool</title>
+
+    <meta name="description" content="Free online Base64 encoder and decoder tool. Encode text to Base64 or decode Base64 strings instantly. Fast, secure and easy to use developer utility.">
+
+    <meta name="keywords" content="base64 encode, base64 decode, base64 encoder online, base64 decoder online, encode base64, decode base64, developer tools">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://yourdomain.com/base64-encode-decode" />
+
+    <meta property="og:title" content="Base64 Encode Decode Online Tool">
+    <meta property="og:description" content="Encode text to Base64 or decode Base64 strings instantly using this free developer tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/base64-encode-decode">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Base64 Encode Decode Online Tool">
+    <meta name="twitter:description" content="Convert text to Base64 or decode Base64 instantly with this free online tool.">
+
+    <script type="application/ld+json">
+        {
+         "@@context": "https://schema.org",
+         "@@type": "WebApplication",
+         "name": "Base64 Encoder Decoder",
+         "url": "https://yourdomain.com/base64-encode-decode",
+         "applicationCategory": "DeveloperApplication",
+         "operatingSystem": "All",
+         "description": "Free online Base64 encoder and decoder tool for developers to encode or decode Base64 strings instantly."
+        }
+    </script>
+
+}

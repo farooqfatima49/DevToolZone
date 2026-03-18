@@ -5,7 +5,8 @@
         "csharp" => "JSON to C# Model Converter Online",
         "typescript" => "JSON to TypeScript Interface Generator",
         "sql" => "JSON to SQL Table Converter",
-        _ => "Free Online JSON Converter – Convert JSON to C# / SQL /typescript"
+        "xml" => "JSON to XML Converter",
+        _ => "Free Online JSON Converter – Convert JSON to C# / SQL /typescript /XML"
     };
 }
 
@@ -22,11 +23,12 @@
                 <option value="csharp">C# Model</option>
                 <option value="typescript">TypeScript Interface</option>
                 <option value="sql">SQL Table</option>
+                <option value="xml">XML</option>
             </select>
 
-            <button id="convertBtn" class="btn btn-light">Convert</button>
-            <button id="clearBtn" class="btn btn-light">Clear</button>
-            <button id="copyBtn" class="btn btn-light">Copy Output</button>
+            <button id="convertBtn" class="btn btn-light" disabled>Convert</button>
+            <button id="clearBtn" class="btn btn-light" disabled>Clear</button>
+            <button id="copyBtn" class="btn btn-light" disabled>Copy Output</button>
         </div>
 
         <!-- Editors Section -->
@@ -36,14 +38,29 @@
             <div class="editor-card">
             <div class="editor-box">
                 <label>Input JSON</label>
-                <div id="jsonInputEditor" class="editor"></div>
-            </div>
+                <div id="jsonInput" class="editor"></div>
+                    <div class="mb-3">
+                        <label class="btn btn-light">
+                            Upload JSON File
+                            <input type="file" id="jFConverterInput" hidden accept=".json">
+                        </label>
+                    </div>
+                </div>
             </div>
             <!-- Output -->
             <div class="editor-card">
             <div class="editor-box">
                 <label>Generated Model</label>
                 <pre id="outputEditor" class="output-editor"></pre>
+                    <div class="download-dropdown">
+                        <button class="download-btn btn btn-light" id="btnDownload" disabled>Download ▾</button>
+
+                        <div class="download-menu">
+                            <button onclick="download('txt')">TXT</button>
+                            <button onclick="download('json')">JSON</button>
+                            <button onclick="download('xml')">XML</button>
+                        </div>
+                    </div>
             </div>
         </div>
         </div>
@@ -51,24 +68,25 @@
         <section class="seo-content">
             <h2>About JSON Converter</h2>
             <p>
-                Our JSON to C# converter allows developers to generate C# classes instantly from JSON data.
-                This tool is useful for creating strongly typed models in ASP.NET applications.
+                Our JSON converter allows developers to generate classes instantly from JSON data.
+                This tool is useful for creating strongly typed models .
             </p>
 
-            <h2>How to Convert JSON to C#?</h2>
+            <h2>How to Convert JSON</h2>
             <ol>
                 <li>Paste your JSON in the editor.</li>
+                <li>Select type in which you want to convert json.</li>
                 <li>Click Convert.</li>
-                <li>Copy the generated C# class.</li>
+                <li>Copy the generated Model.</li>
             </ol>
 
             <h2>Example</h2>
-<pre>
-{
-  "name": "Fatima",
-  "age": 25
-}
-</pre>
+    <pre>
+    {
+        "name": "Fatima",
+        "age": 25
+    }
+    </pre>
             <section class="seo-content">
                 <h2>Frequently Asked Questions</h2>
                 <div class="faq-item">
@@ -84,7 +102,7 @@
                     </div>
                 </div>
            </section>
-            <p>Check out our <a href="/json-formatter">JSON Formatter</a> or <a href="/json-converter">JSON Converter</a> for easy formatting.</p>
+            <p>Check out our <a href="/json-formatter">JSON Formatter</a> or <a href="/json-comparer">JSON Comparer</a> for easy formatting.</p>
 
         </section>
            </div>

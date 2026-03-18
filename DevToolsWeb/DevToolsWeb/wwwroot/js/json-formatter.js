@@ -1,4 +1,5 @@
 ﻿const container = document.getElementById("jsonOutput");
+const container1 = document.getElementById("jsonInput");
 const options = {
     mode: "code",        // default Code mode
     modes: ["code", "tree"],
@@ -8,11 +9,18 @@ const options = {
         updateEditorButtons()
         updateToggleButton();
         expandCollapse();
+        toggleButtons();
+    },
+    onChange: function () {
+        updateEditorButtons()
+        updateToggleButton();
+        expandCollapse();
+        toggleButtons();
     }
 };
-let searchMarkers1 = [];
-let searchMarkers2 = [];
+
 const editor = new JSONEditor(container, options);
+const editor1 = new JSONEditor(container1, options);
 // -------------------- Buttons --------------------
 const btnFormat = document.getElementById("btnFormat");
 const btnValidate = document.getElementById("btnValidate");
@@ -21,7 +29,8 @@ const btnCopy = document.getElementById("btnCopy");
 const btnExpand = document.getElementById("btnExpand");
 const btnMinify = document.getElementById("btnMinify");
 const btnFix = document.getElementById("btnFix");
-const editorButtons = [btnClear, btnCopy];
+const btnDownload = document.getElementById("btnDownload");
+const editorButtons = [btnClear, btnCopy, btnDownload];
 const textareaButtons = [btnFormat, btnValidate, btnFix, btnMinify];
 
 // -------------------- Update Buttons State --------------------
@@ -48,20 +57,24 @@ function expandCollapse() {
         btnExpand.textContent = isExpanded ? 'Collapse' : 'Expand';
     }
 }
-const jsonInput = document.getElementById("jsonInput");
 
-jsonInput.addEventListener("input", () => {
-    const hasText = jsonInput.value.trim().length > 0;
+function toggleButtons() {
+    let hasText = false;
+    try {
+        const json = editor1.get();
+        if (json && (Object.keys(json).length > 0 || Array.isArray(json) && json.length > 0)) {
+            hasText = true;
+        }
+    } catch (e) {
+        // invalid JSON, still rely on inputText
+    }
     textareaButtons.forEach(btn => {
         btn.disabled = !hasText;
         btn.style.opacity = hasText ? 1 : 0.5;
         btn.style.cursor = hasText ? "pointer" : "not-allowed";
     });
-});
-const jsonOutput = document.getElementById("jsonOutput");
-jsonOutput.addEventListener("input", () => {
-    updateEditorButtons()
-});
+}
+
 function updateEditorButtons() {
     let hasText = false;
     try {
@@ -80,11 +93,13 @@ function updateEditorButtons() {
 }
 
 // -------------------- JSON Functions --------------------
+
 function formatJson() {
     try {
-        const input = document.getElementById("jsonInput").value;
+        const input = editor1.getText();//JSON.stringify(editor1.get(), null, 2) ;//document.getElementById("jsonInput").value;        
         const parsed = JSON.parse(input);
         editor.set(parsed);
+        toggleButtons()
         showMessage("Valid JSON formatted successfully ✅", "success","formattermessage");
     } catch (e) {
         showMessage("Invalid JSON:" + e.message, "err", "formattermessage");       
@@ -93,11 +108,12 @@ function formatJson() {
 }
 function minifyJson() {
     try {
-        const input = document.getElementById("jsonInput").value;
+        const input = editor1.getText();//editor1.get(); //document.getElementById("jsonInput").value;
         const parsed = JSON.parse(input);
         const minified = JSON.stringify(parsed);
         editor.set(parsed);
-        document.getElementById("jsonInput").value = minified;
+        editor1.set(minified);
+        //document.getElementById("jsonInput").value = minified;
         showMessage("JSON minified successfully ✅", "success", "formattermessage");
     } catch (e) {
         showMessage("Invalid JSON: " + e.message, "err", "formattermessage");
@@ -107,7 +123,7 @@ function minifyJson() {
     updateEditorButtons();
 }
 function validateJson() {
-    const rawInput = document.getElementById("jsonInput").value;
+    const rawInput = editor1.getText();//document.getElementById("jsonInput").value;
 
     if (!rawInput.trim()) {
         showMessage("JSON input is empty ❌", "err", "formattermessage");
@@ -122,27 +138,6 @@ function validateJson() {
     } catch (e) {
         showMessage(`Invalid JSON ❌ — ${e.message}`, "err", "formattermessage");
 
-        // Highlight error line in textarea
-        const pos = e.message.match(/position (\d+)/);
-        if (pos) {
-            const index = parseInt(pos[1], 10);
-            const lines = rawInput.slice(0, index).split("\n");
-            const lineNumber = lines.length;
-
-            // Scroll textarea to the line
-            const textarea = document.getElementById("jsonInput");
-            const lineHeight = 20; // approximate line height in px
-            textarea.scrollTop = (lineNumber - 1) * lineHeight;
-
-            // Optional: highlight the error line
-            const allLines = rawInput.split("\n");
-            const highlighted = allLines.map((line, i) =>
-                i === lineNumber - 1 ? `>>> ${line}` : line
-            ).join("\n");
-            textarea.value = highlighted;
-        }
-
-        //updateButtonsState();
     }
 }
 function clearFields() {
@@ -177,68 +172,14 @@ function replaceKeyValue(obj, key, newValue) {
     }
 }
 
-//function replaceValueByKey() {
-//    const key = document.getElementById("replaceKey").value.trim();
-//    const value = document.getElementById("replaceValue").value;
-//    const inputEl = document.getElementById("jsonInput");
-
-//    if (!key) {
-//        showMessage("Please enter a key to replace ❌", "err", "formattermessage");
-//        return;
-//    }
-
-//    let inputText = inputEl.value;
-//    if (!inputText) {
-//        showMessage("JSON input is empty ❌", "err", "formattermessage");
-//        return;
-//    }
-
-//    try {
-//        const parsed = JSON.parse(inputText);
-
-//        // Replace all matching key values
-//        replaceKeyValue(parsed, key, value);
-
-//        // Update textarea and editor
-//        const newJsonText = JSON.stringify(parsed, null, 4);
-//        inputEl.value = newJsonText;
-//        editor.set(parsed);
-
-//        showMessage(`All values of key "${key}" replaced ✅`, "success", "formattermessage");
-//        // updateButtonsState();
-//    } catch (err) {
-//        showMessage("Invalid JSON: " + err.message, "err", "formattermessage")
-//    }
-//}
-//function ParseJson(input) {
-  
-//    try {
-//        JSON.parse(input);
-//        editor.set(JSON.parse(input));
-//    } catch (e) {
-//        showMessage(`Invalid JSON ❌ — ${e.message}`, "err", "formattermessage");
-
-//        // Attempt to highlight error line
-//        const pos = e.message.match(/position (\d+)/);
-//        if (pos) {
-//            const index = parseInt(pos[1], 10);
-//            const linesUntilError = input.slice(0, index).split("\n");
-//            const lineNumber = linesUntilError.length;
-//            // Optional: scroll editor to line
-//            editor.scrollToLine(lineNumber - 1);
-//        }
-//    }
-//}
-
 function autoFixJson(input) {
     let fixed = input;
     fixed = fixed.replace(/'/g, '"'); // single → double quotes
     fixed = fixed.replace(/,(\s*[}\]])/g, '$1'); // trailing commas
     return fixed;
 }
-function fixJson() {
-   
-    const input = document.getElementById("jsonInput").value;
+function fixJson() {   
+    const input = editor1.get(); //document.getElementById("jsonInput").value;
     let fixedInput = autoFixJson(input);
     try {
         const parsed = JSON.parse(fixedInput);
@@ -274,6 +215,7 @@ let searchMarkers = [];
 
 // ------------------ Perform Search ------------------
 function performSearch() {
+    debugger
     const word = document.getElementById("editorFind").value.trim();
     const aceEditor = editor.aceEditor;
 
@@ -512,3 +454,21 @@ function replaceKeyValue() {
 
     showMessage(`${replaceCount} key value(s) replaced ✅`, "success","formattermessage");
 }
+function download(type) {
+    const output = editor.getText();//document.getElementById("jsonOutput").value;
+    downloadOutput(type, output)
+}
+let fileInput= document.getElementById("jsonFileInput")
+fileInput.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+        validateFileInput(file, "formattermessage")        
+        const reader = new FileReader();
+    reader.onload = function (event) {
+           // document.getElementById("jsonInput").value = e.target.result;
+            uploadJsonFile(event, editor1, fileInput);
+            toggleButtons()
+           // fileInput.value = "";
+        };
+
+        reader.readAsText(file);
+    });
