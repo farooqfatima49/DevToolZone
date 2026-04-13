@@ -20,3 +20,7 @@
 /DevToolsWeb/DevToolsZone.Infrastructure/obj
 /DevToolsWeb/DevToolsZone.Application/bin/Debug/net8.0/DevToolsZone.Application.dll
 /DevToolsWeb/DevToolsZone.Application/bin/Debug/net8.0/DevToolsZone.Application.pdb
+/DevToolsWeb/DevToolsWeb/bin/Release/net8.0
+/DevToolsWeb/DevToolsWeb/Properties/PublishProfiles
+/DevToolsWeb/DevToolsZone.Application/bin/Release/net8.0
+/Publish
