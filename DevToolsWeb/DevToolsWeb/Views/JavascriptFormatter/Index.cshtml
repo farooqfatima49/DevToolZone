@@ -1,0 +1,188 @@
+﻿@{
+    ViewData["Title"] = "Free Online JavaScript Obfuscator Tool | Protect & Encrypt Your Code";
+}
+<div class="page-bg">
+    <div class="glass-card">
+
+        <!-- Header -->
+        <h1>Free Online JSON Comparer – Highlight Differences</h1>
+        <p class="subtitle">
+            Compare two JSON objects online. Highlight differences and validate JSON.
+        </p>
+        <div class="editor-wrapper">
+            <!-- Input -->
+            <div class="editor-card">
+                <div class="editor-box">
+                    <label>Input JavaScript</label>
+                    <textarea id="jsInput" class="editor"></textarea>
+
+                    <div class="button-group">
+                        <button class="btn btn-light" onclick="obfuscateJs()" id="btnObfuscate" disabled>Obfuscate</button>
+                        <button class="btn btn-light" onclick="minifyJs()" id="btnMinify" disabled>Minify</button>
+                        <button class="btn btn-light" onclick="clearJs()" id="btnClear" disabled>Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output -->
+            <div class="editor-card">
+                <div class="editor-box">
+                    <label>Obfuscated Output</label>
+                    <textarea id="jsOutput" class="editor"></textarea>
+
+                    <div class="button-group">
+                        <button class="btn btn-light" onclick="copyJs()" id="btnCopy" disabled>Copy</button>
+                        <button class="btn btn-light" onclick="downloadJs()" id="btnDownload" disabled>Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p id="obfuscatormessage" class="message" role="status" aria-live="polite"></p>
+        <section class="seo-content">
+
+            <!-- Features Section -->
+            <h2>Features of Our JavaScript Obfuscator Tool</h2>
+            <ul>
+                <li>Obfuscate <strong>JavaScript code</strong> instantly to protect it from reverse engineering.</li>
+                <li>Minify and compress JS files to improve performance and reduce file size.</li>
+                <li>Fast, secure, and completely free — works directly in your browser.</li>
+                <li>Copy or download obfuscated code with a single click.</li>
+            </ul>
+
+            <!-- Benefits Section -->
+            <h2>Why Use a JavaScript Obfuscator?</h2>
+            <ol>
+                <li>Protect your <strong>source code</strong> from theft and unauthorized access.</li>
+                <li>Make your code difficult to read and understand.</li>
+                <li>Improve website performance with minified scripts.</li>
+                <li>Secure business logic in web applications.</li>
+            </ol>
+
+            <!-- Instructions Section -->
+            <h2>How to Use the JavaScript Obfuscator Tool</h2>
+            <p>
+                1. Paste your JavaScript code into the input editor.<br>
+                2. Click <strong>Obfuscate</strong> to transform your code into an unreadable format.<br>
+                3. (Optional) Click <strong>Minify</strong> to reduce file size.<br>
+                4. Copy or download the obfuscated JavaScript for use in your project.
+            </p>
+
+            <!-- Who Can Benefit Section -->
+            <h2>Who Can Benefit From This Tool?</h2>
+            <ul>
+                <li>Web developers protecting frontend code</li>
+                <li>Freelancers securing client projects</li>
+                <li>Software engineers safeguarding business logic</li>
+                <li>Students learning JavaScript security techniques</li>
+            </ul>
+
+            <!-- FAQ Section -->
+            <section class="seo-content">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question">What is a JavaScript obfuscator?</button>
+                    <div class="faq-answer">
+                        <p>
+                            A JavaScript obfuscator is a tool that converts readable JavaScript code into a complex and unreadable format to protect it from reverse engineering and misuse.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Does obfuscated JavaScript still work?</button>
+                    <div class="faq-answer">
+                        <p>
+                            Yes, obfuscated JavaScript functions exactly the same as the original code. Only its readability is reduced for humans.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Is this JavaScript obfuscator free?</button>
+                    <div class="faq-answer">
+                        <p>
+                            Yes, this tool is completely free to use online with no installation or signup required.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">What is the difference between minification and obfuscation?</button>
+                    <div class="faq-answer">
+                        <p>
+                            Minification reduces file size by removing spaces and unnecessary characters, while obfuscation transforms the code into an unreadable format for security purposes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Can obfuscated JavaScript be reversed?</button>
+                    <div class="faq-answer">
+                        <p>
+                            Obfuscation makes code difficult to understand, but it is not 100% secure. However, it significantly increases the effort required to reverse engineer the code.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+            <p>
+                Check out our
+                <a href="/base64-encoder-decoder">Base64 Encoder / Decoder</a> or
+                <a href="/json-converter">Json Converter</a> for working with JSON data.
+            </p>
+
+        </section>
+    </div>
+</div>
+<script src="~/js/js-obfuscator.js"></script>
+@section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Free Online JavaScript Obfuscator Tool | Protect & Minify JS Code">
+    <meta name="description" content="Obfuscate and protect your JavaScript code online for free. Minify, secure, and make your JS code unreadable while keeping it fully functional.">
+    <meta name="keywords" content="JavaScript Obfuscator, JS Obfuscator Online, JavaScript Minifier, Protect JS Code, Obfuscate JavaScript, Free JS Obfuscator Tool">
+    <meta name="author" content="DevToolsZone">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="@fullUrl" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Online JavaScript Obfuscator Tool">
+    <meta property="og:description" content="Protect your JavaScript code with our free online obfuscator. Minify and secure your JS instantly.">
+    <meta property="og:url" content="@fullUrl">
+    @* <meta property="og:image" content="https://devtoolsworld.com/javascript-obfuscator-preview.jpg"> *@
+    <meta property="og:site_name" content="DevToolsZone">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free JavaScript Obfuscator Online">
+    <meta name="twitter:description" content="Obfuscate and minify JavaScript code instantly. Secure your JS with our free online tool.">
+   @*  <meta name="twitter:image" content="https://yourdomain.com/images/javascript-obfuscator-preview.jpg">
+ *@
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@@type": "WebApplication",
+            "name": "JavaScript Obfuscator Tool",
+            "url": "@fullUrl",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "All",
+            "description": "Free online JavaScript obfuscator to protect, minify, and secure your JS code instantly.",
+            "offers": {
+                "@@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+    </script>
+}

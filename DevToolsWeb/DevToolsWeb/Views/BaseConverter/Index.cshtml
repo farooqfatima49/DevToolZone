@@ -30,13 +30,13 @@
                 <div class="editor-box">
                    <textarea id="outputText" placeholder="Result will appear here..."></textarea>
                     <div class="button-group" aria-label="JSON tool actions">
-                        @* <button onclick="downloadOutput()" class="btn btn-light" id="btnDownload" disabled>Download</button> *@
+                      
                         <div class="download-dropdown">
                             <button class="download-btn btn btn-light" id="btnDownload" disabled>Download ▾</button>
                             <div class="download-menu">
                                 <button onclick="download('txt')">TXT</button>                                
                             </div>
-                        </div><button onclick="copyOutput()" class="btn btn-light" id="btnCopy" disabled>Copy</button>
+                        </div><button onclick="copy()" class="btn btn-light" id="btnCopy" disabled>Copy</button>
                         <button onclick="clearFields(1)" class="btn btn-light" id="btnOutputClear" disabled>Clear</button>
                     </div>
                 </div>
@@ -125,7 +125,13 @@
 </div>
 <script src="~/js/base64encoder.js"></script>
 @section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
     <title>Base64 Encode Decode Online | Free Base64 Encoder Decoder Tool</title>
 
     <meta name="description" content="Free online Base64 encoder and decoder tool. Encode text to Base64 or decode Base64 strings instantly. Fast, secure and easy to use developer utility.">
@@ -134,12 +140,12 @@
 
     <meta name="robots" content="index, follow">
 
-    <link rel="canonical" href="https://yourdomain.com/base64-encode-decode" />
+    <link rel="canonical" href="@fullUrl" />
 
     <meta property="og:title" content="Base64 Encode Decode Online Tool">
     <meta property="og:description" content="Encode text to Base64 or decode Base64 strings instantly using this free developer tool.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/base64-encode-decode">
+    <meta property="og:url" content="@fullUrl">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Base64 Encode Decode Online Tool">
@@ -150,7 +156,7 @@
          "@@context": "https://schema.org",
          "@@type": "WebApplication",
          "name": "Base64 Encoder Decoder",
-         "url": "https://yourdomain.com/base64-encode-decode",
+         "url": "@fullUrl",
          "applicationCategory": "DeveloperApplication",
          "operatingSystem": "All",
          "description": "Free online Base64 encoder and decoder tool for developers to encode or decode Base64 strings instantly."

@@ -153,11 +153,11 @@ input:checked + .slider {
     }
 
 /* ================== EDITOR LAYOUT ================== */
-.editor-wrapper {
+/*.editor-wrapper {
     display: flex;
     gap: 25px;
     flex-wrap: wrap;
-}
+}*/
 
 .editor-box {
     flex: 1;
@@ -218,17 +218,18 @@ body.dark-mode .contact-box textarea {
 }
 
 /* ================== JSONEDITOR CONTAINER ================== */
-#jsonOutput {
+/*#jsonOutput {
     height: 450px;
     border-radius: 12px;
     border: 1px solid #ddd;
     overflow: hidden;
     transition: 0.3s ease;
-}
+   
+}*/
 
-.dark-mode #jsonOutput {
+/*.dark-mode #jsonOutput {
     border: thin solid #ddd;
-}
+}*/
 /* ================== BUTTONS ================== */
 
 button {
@@ -243,7 +244,13 @@ button {
 .button-group {
     margin-top: 35px;
     text-align: center;
+    /*display: flex;
+    flex-wrap: wrap;
+    gap: 10px;*/
 }
+    /*.button-group .btn {
+        flex: 1 1 auto;
+    }*/
 /* Light mode buttons */
 .btn-light {
     background: var(--btn-devTool-light-bg); /* blue button */
@@ -457,8 +464,13 @@ button {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    /*flex: 1 1 48%;*/
 }
-
+/*.editor-wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}*/
 .editor-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -835,12 +847,13 @@ button {
     margin-bottom: 15px;
 }
 
-.converter-toolbar select {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
+    .converter-toolbar select {
+        /* padding: 8px 12px;*/
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin: 6px;
+        /* font-size: 14px;*/
+    }
 
 /* ============Editor=============== */
 .editor-box {
@@ -1038,34 +1051,7 @@ seo-content {
 .replace-buttons {
     display: contents;
 }
-/* ================== RESPONSIVE ================== */
-@media (max-width: 768px) {
-    .editor-wrapper {
-        flex-direction: column;
-    }
 
-    .glass-card {
-        padding: 30px;
-    }
-}
-
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 600px) {
-    .find-group, .replace-group {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .nav-btn {
-        width: 100%;
-    }
-}
 .about-page {
     padding: 60px 20px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -1137,10 +1123,7 @@ seo-content {
         }
 
 /* Dark mode support */
-/*.dark-mode .about-page {
-    background: #1e1e1e;
-    color: #ddd;
-}*/
+
 
 .dark-mode .about-card {
     background: #2c2c2c;
@@ -1316,15 +1299,6 @@ seo-content {
     text-decoration: none;
 }
 
-/*.logo {
-    height: 40px;
-    margin-right: 8px;
-}*/
-/*.logo {
-    height: 10%;
-    width: 10%;
-}*/
-
 .logo-text {
     font-size: 20px;
     font-weight: bold;
@@ -1351,4 +1325,106 @@ seo-content {
 /* Prevent menu overlapping logo */
 .navbar .container-fluid {
     padding-left: 200px;
+}
+
+/* ================== RESPONSIVE ================== */
+@media (min-width: 400px) {
+    html {
+        font-size: 16px;
+    }
+
+    .editor-wrapper {
+        flex-direction: column;
+     }
+
+    .glass-card {
+        padding: 30px;
+    }
+}
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+
+    
+    .glass-card {
+        padding: 30px;
+    }
+}
+/*@media (max-width: 768px) {
+    .editor-card {
+        flex: 1 1 100%;
+    }
+}*/
+
+@media (max-width: 600px) {
+    .find-group, .replace-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+        padding: inherit;
+    }
+
+        .button-group .btn {
+            width: 100%;
+
+        }
+    /*.btn {
+        margin: unset;
+    }*/
+    .download-dropdown {
+        width: 100%;
+        
+    }
+
+    .editor-wrapper {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .editor-card {
+        flex: 1 1 48%;
+        padding: initial;
+    }
+
+    .editor {
+        width: 100%;
+        min-height: 250px;
+    }
+
+    .converter-toolbar {
+        flex-direction: column;
+        padding: inherit;
+    }
+        .converter-toolbar select {
+            padding: 10px 12px;
+           /* margin: 0px;*/
+        }
+    .mb-3 {
+        width: 100%;
+        padding: inherit;
+    }
+
+        .mb-3 label {
+            width: 100%;
+            text-align: center;
+        }
+
+    .find-group,
+    .replace-group {
+        flex-direction: column;
+    }
+
+    .input-wrapper input {
+        width: 100%;
+    }
 }

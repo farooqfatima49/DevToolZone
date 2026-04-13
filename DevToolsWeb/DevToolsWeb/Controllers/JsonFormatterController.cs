@@ -8,7 +8,8 @@
         {
             _logger = logger;
         }
-
+        
+        [Route("json-formatter")]
         public IActionResult Index()
         {
             return View();

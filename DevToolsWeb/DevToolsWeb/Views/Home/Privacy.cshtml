@@ -68,11 +68,18 @@
     </div>
 </section>
 @section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
     <meta name="description" content="DevToolsZone Privacy Policy. Learn how we handle your data while using our free online developer tools.">
     <meta name="keywords" content="Privacy Policy, DevToolsZone, developer tools, online utilities, JSON formatter, free tools">
     <meta property="og:title" content="Privacy Policy - DevToolsZone">
     <meta property="og:description" content="DevToolsZone Privacy Policy. Learn how we handle your data while using our free online developer tools.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/privacy-policy">
-    <meta property="og:image" content="https://yourdomain.com/images/privacy-seo.jpg">
+    <meta property="og:url" content="@fullUrl">
+    @* <meta property="og:image" content="https://yourdomain.com/images/privacy-seo.jpg"> *@
 }

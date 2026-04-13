@@ -42,12 +42,12 @@ function toggleButtons() {
     } catch {
         hasText = false;
     }
-
-    comparerButtons.forEach(btn => {
-        btn.disabled = !hasText;
-        btn.style.opacity = hasText ? 1 : 0.5;
-        btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    });
+    toggleMainButtons(hasText, comparerButtons);
+    //comparerButtons.forEach(btn => {
+    //    btn.disabled = !hasText;
+    //    btn.style.opacity = hasText ? 1 : 0.5;
+    //    btn.style.cursor = hasText ? "pointer" : "not-allowed";
+    //});
 }
 
 function compareJson() {    
@@ -127,17 +127,7 @@ function highlightDifferences(text1, text2) {
 let fileInput1 = document.getElementById("jsonFileInput1")
 fileInput1.addEventListener("change", function (event) {
     const file = event.target.files[0];
-    validateFileInput(file, "comparermessage");
-    //if (!file) return;
-
-    //if (!file.name.endsWith(".json")) {
-    //    alert("Please upload a valid JSON file.");
-    //    return;
-    //}
-    //if (file.size > 2 * 1024 * 1024) {
-    //    alert("File too large. Max 2MB allowed.");
-    //    return;
-    //}
+    validateFileInput(file, "comparermessage");    
     const reader = new FileReader();
 
     reader.onload = function (event) {
@@ -152,17 +142,7 @@ fileInput1.addEventListener("change", function (event) {
 let fileInput2 = document.getElementById("jsonFileInput2")
 fileInput2.addEventListener("change", function (event) {
     const file = event.target.files[0];
-    validateFileInput(file, "comparermessage");
-    //if (!file) return;
-
-    //if (!file.name.endsWith(".json")) {
-    //    alert("Please upload a valid JSON file.");
-    //    return;
-    //}
-    //if (file.size > 2 * 1024 * 1024) {
-    //    alert("File too large. Max 2MB allowed.");
-    //    return;
-    //}
+    validateFileInput(file, "comparermessage");    
     const reader = new FileReader();
 
     reader.onload = function (event) {

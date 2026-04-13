@@ -77,11 +77,17 @@
 
 <!-- SEO Meta & Open Graph -->
 @section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
     <meta name="description" content="DevToolsZone Terms and Conditions. Learn the rules and guidelines for using our free online developer tools.">
     <meta name="keywords" content="Terms and Conditions, DevToolsZone, developer tools, JSON formatter, online utilities, free tools, web tools">
     <meta property="og:title" content="Terms and Conditions - DevToolsZone">
     <meta property="og:description" content="DevToolsZone Terms and Conditions. Learn the rules and guidelines for using our free online developer tools.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/terms-and-conditions">
-    <meta property="og:image" content="https://yourdomain.com/images/seo-terms.jpg">
+    <meta property="og:url" content="@fullUrl">
+    @* <meta property="og:image" content="https://yourdomain.com/images/seo-terms.jpg"> *@
 }

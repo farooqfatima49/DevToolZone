@@ -11,7 +11,7 @@ const editor = new JSONEditor(container, {
     onChange: function () {
         toggleButtons();
     }
-    
+
 });
 
 // ================================
@@ -30,10 +30,10 @@ btnClear.addEventListener("click", function () {
     toggleButtons()
 });
 btnCopy.addEventListener("click", function () {
-        navigator.clipboard.writeText(
-            document.getElementById("outputEditor").textContent
-        );
-    });
+    navigator.clipboard.writeText(
+        document.getElementById("outputEditor").textContent
+    );
+});
 
 function toggleButtons() {
     let hasText = false;
@@ -44,13 +44,13 @@ function toggleButtons() {
     } catch {
         hasText = false;
     }
+    toggleMainButtons(hasText, textareaButtons);
+    //textareaButtons.forEach(btn => {
+    //    btn.disabled = !hasText;
+    //    btn.style.opacity = hasText ? 1 : 0.5;
+    //    btn.style.cursor = hasText ? "pointer" : "not-allowed";
+    //});
 
-    textareaButtons.forEach(btn => {
-        btn.disabled = !hasText;
-        btn.style.opacity = hasText ? 1 : 0.5;
-        btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    });
-  
 }
 // ================================
 // Main Convert Function
@@ -84,7 +84,7 @@ function convertJson() {
         document.getElementById("outputEditor").textContent = output;
 
     } catch (err) {
-        showMessage("Invalid JSON: " + err.message, "err", "converterMessage")       
+        showMessage("Invalid JSON: " + err.message, "err", "converterMessage")
     }
 }
 
@@ -281,7 +281,7 @@ function formatXml(xml) {
     return formatted;
 }
 function download(type) {
-    const output = document.getElementById("outputEditor").textContent 
+    const output = document.getElementById("outputEditor").textContent
     downloadOutput(type, output)
 }
 function capitalize(str) {
@@ -289,20 +289,16 @@ function capitalize(str) {
 }
 let fileInput = document.getElementById("jFConverterInput")
 fileInput.addEventListener("change", function (event) {
-       const file = event.target.files[0];
+    const file = event.target.files[0];
     validateFileInput(file, "converterMessage")
-        
-        const reader = new FileReader();
-
-        reader.onload = function (event) {
-            try {
-                uploadJsonFile(event, editor, fileInput);
-                toggleButtons(); // enable buttons                
-            } catch (err) {
-                showMessage("Invalid JSON file", "err", "convertermessage");
-                
-            }
-        };
-
-        reader.readAsText(file);
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        try {
+            uploadJsonFile(event, editor, fileInput);
+            toggleButtons(); // enable buttons                
+        } catch (err) {
+            showMessage("Invalid JSON file", "err", "convertermessage");
+        }
+    };
+    reader.readAsText(file);
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DevToolsZone</title>
+    <title>@ViewData["Title"] - DevToolsWorld</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />   
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,16 +11,20 @@
     <!-- Include Ace Editor -->
     <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.23.1/src-min-noconflict/ace.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.23.1/src-min-noconflict/ext-language_tools.js"></script>
-    @* <script src="~/lib/json-editor/ace.js"></script>
-    <script src="~/lib/json-editor/ext-language_tools.js"></script> *@
+   
     <!-- JSONEditor -->
     <link href="https://cdn.jsdelivr.net/npm/jsoneditor@9.10.0/dist/jsoneditor.min.css" rel="stylesheet" />
     <script src="~/lib/json-editor/jsoneditor.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="~/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="~/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <meta name="robots" content="index, follow" />
-   
     @RenderSection("HeadContent", required: false)
 </head>
 
@@ -31,7 +35,7 @@
                 <img src="~/images/logo.png" alt="DevTools Logo" class="logo">
             </div>
             <div class="container-fluid">
-                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,6 +62,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="BaseConverter" asp-action="Index">Base64 Encoder/Decoder</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="JavascriptFormatter" asp-action="Index">Javascript Obfuscator</a>
                         </li>
                         
                     </ul>
@@ -86,9 +93,9 @@
 
             <!-- About -->
             <div class="footer-column" style="line-height: normal;text-wrap: auto;">
-                <h5>DevToolsZone</h5>
+                <h5>DevToolsWorld</h5>
                 <p>
-                    DevToolsZone provides free online developer tools including
+                    DevToolsWorld provides free online developer tools including
                     JSON formatter, JSON validator, converters, and productivity
                     utilities designed to help developers work faster and smarter.
                 </p>
@@ -115,6 +122,7 @@
             <div class="footer-column">
                 <ul class="footer-links">
                     <li><a href="/base64-encoder-decoder">Base64 Encoder/Decoder</a></li>
+                    <li><a href="/javascript-obfuscator">Javascript Obfuscator</a></li>
                 </ul>
             </div>
 
@@ -142,7 +150,7 @@
         </div>
 
         <div class="footer-bottom">
-            © 2026 DevToolsZone — Free Online Developer Tools
+            © 2026 DevToolsWorld — Free Online Developer Tools
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

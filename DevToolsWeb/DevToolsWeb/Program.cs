@@ -33,7 +33,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
@@ -92,9 +91,14 @@ app.MapControllerRoute(
     pattern: "base64-encoder-decoder",
     defaults: new { controller = "BaseConverter", action = "Index" }
 );
+app.MapControllerRoute(
+    name: "jsonobfuscator",
+    pattern: "javascript-obfuscator",
+    defaults: new { controller = "JavascriptFormatter", action = "Index" }
+);
 app.UseResponseCompression();
 
-//app.UseStaticFiles();
+app.UseStaticFiles();
 
 app.MapControllers();
 app.Run();

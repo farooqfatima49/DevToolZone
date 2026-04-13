@@ -128,7 +128,12 @@
 </div>
 <script src="~/js/json-comparer.js"></script>
 @section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
     <!-- Primary Meta Tags -->
     <meta name="title" content="Free JSON Comparer Online - Compare JSON & Highlight Differences">
     <meta name="description" content="Compare two JSON files online and highlight differences instantly. Free JSON Comparer tool with side-by-side comparison and difference detection.">
@@ -137,21 +142,21 @@
     <meta name="robots" content="index, follow">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://yourdomain.com/json-comparer" />
+    <link rel="canonical" href="@fullUrl" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Free JSON Comparer Online - Highlight Differences Instantly">
     <meta property="og:description" content="Use our free JSON Comparer tool to compare two JSON objects and detect differences with highlighted changes. Fast and secure.">
-    <meta property="og:url" content="https://yourdomain.com/json-comparer">
-    <meta property="og:image" content="https://yourdomain.com/images/json-comparer-preview.jpg">
+    <meta property="og:url" content="@fullUrl">
+    @* <meta property="og:image" content="https://yourdomain.com/images/json-comparer-preview.jpg"> *@
     <meta property="og:site_name" content="DevToolsZone">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Free JSON Comparer Online">
     <meta name="twitter:description" content="Compare two JSON files side by side and highlight exact differences instantly. 100% free JSON diff tool.">
-    <meta name="twitter:image" content="https://yourdomain.com/images/json-comparer-preview.jpg">
+    @* <meta name="twitter:image" content="https://yourdomain.com/images/json-comparer-preview.jpg"> *@
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -159,7 +164,7 @@
             "@@context": "https://schema.org",
             "@@type": "WebApplication",
             "name": "JSON Comparer Tool",
-            "url": "https://yourdomain.com/json-comparer",
+            "url": "@fullUrl",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "All",
             "description": "Free online JSON comparer tool to compare two JSON files and highlight differences instantly.",

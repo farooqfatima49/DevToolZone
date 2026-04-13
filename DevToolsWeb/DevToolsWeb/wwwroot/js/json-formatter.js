@@ -68,11 +68,12 @@ function toggleButtons() {
     } catch (e) {
         // invalid JSON, still rely on inputText
     }
-    textareaButtons.forEach(btn => {
-        btn.disabled = !hasText;
-        btn.style.opacity = hasText ? 1 : 0.5;
-        btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    });
+    toggleMainButtons(hasText, textareaButtons);
+    //textareaButtons.forEach(btn => {
+    //    btn.disabled = !hasText;
+    //    btn.style.opacity = hasText ? 1 : 0.5;
+    //    btn.style.cursor = hasText ? "pointer" : "not-allowed";
+    //});
 }
 
 function updateEditorButtons() {
@@ -85,11 +86,12 @@ function updateEditorButtons() {
     } catch (e) {
         // invalid JSON, still rely on inputText
     }
-    editorButtons.forEach(btn => {
-        btn.disabled = !hasText;
-        btn.style.opacity = hasText ? 1 : 0.5;
-        btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    });
+    toggleMainButtons(hasText, editorButtons);
+    //editorButtons.forEach(btn => {
+    //    btn.disabled = !hasText;
+    //    btn.style.opacity = hasText ? 1 : 0.5;
+    //    btn.style.cursor = hasText ? "pointer" : "not-allowed";
+    //});
 }
 
 // -------------------- JSON Functions --------------------

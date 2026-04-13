@@ -61,7 +61,13 @@
     });
 </script>
 @section HeadContent {
+     @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
     <!-- Primary Meta Tags -->
     <meta name="title" content="FAQ - DevToolsZone | JSON Tools, Converter & Comparer Help">
     <meta name="description" content="Find answers to frequently asked questions about our JSON Formatter, JSON Comparer, JSON Converter and other free online developer tools.">
@@ -70,21 +76,21 @@
     <meta name="robots" content="index, follow">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://yourdomain.com/faq" />
+    <link rel="canonical" href="@fullUrl" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Frequently Asked Questions - DevToolsZone">
     <meta property="og:description" content="Get answers about our JSON Formatter, Comparer, Converter and other free developer tools.">
-    <meta property="og:url" content="https://yourdomain.com/faq">
-    <meta property="og:image" content="https://yourdomain.com/images/faq-preview.jpg">
+    <meta property="og:url" content="@fullUrl">
+   @*  <meta property="og:image" content="https://yourdomain.com/images/faq-preview.jpg"> *@
     <meta property="og:site_name" content="DevToolsZone">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DevToolsZone FAQ">
     <meta name="twitter:description" content="Common questions about our free JSON tools and developer utilities.">
-    <meta name="twitter:image" content="https://yourdomain.com/images/faq-preview.jpg">
+   @*  <meta name="twitter:image" content="https://yourdomain.com/images/faq-preview.jpg"> *@
 
     <!-- FAQ Structured Data (Rich Snippets) -->
     <script type="application/ld+json">

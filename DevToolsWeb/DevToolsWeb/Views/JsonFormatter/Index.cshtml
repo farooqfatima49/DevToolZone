@@ -4,7 +4,7 @@
 
 
 <div class="page-bg">
-    
+
     <div class="glass-card">
 
         <h1>Free Online JSON Formatter & Validator</h1>
@@ -14,94 +14,98 @@
 
         <div class="editor-wrapper">
             <div class="editor-card">
-            <div class="editor-box">                
-                <label>Input JSON</label>
-                    <div id="jsonInput" class="editor"></div>
-                  @*   <textarea id="jsonInput" placeholder="Paste or upload JSON here..."></textarea> *@
-                    <div class="button-group" aria-label="JSON tool actions">
-                        <button id="btnFormat" class="btn btn-light" onclick="formatJson()" disabled>Format</button>
-                        <button id="btnMinify" class="btn btn-light" onclick="minifyJson()" disabled>Minify</button>
-                        <button id="btnValidate" class="btn btn-light" onclick="validateJson()" disabled>Validate</button>
-                        <button id="btnFix" class="btn btn-light" onclick="fixJson()" disabled>Fix Json</button>
+                <div class="">
+                    <div class="editor-box">
+                        <label>Input JSON</label>
+                        <div id="jsonInput" class="editor"></div>
+                        <div class="button-group" aria-label="JSON tool actions">
+                            <button id="btnFormat" class="btn btn-light" onclick="formatJson()" disabled>Format</button>
+                            <button id="btnMinify" class="btn btn-light" onclick="minifyJson()" disabled>Minify</button>
+                            <button id="btnValidate" class="btn btn-light" onclick="validateJson()" disabled>Validate</button>
+                            <button id="btnFix" class="btn btn-light" onclick="fixJson()" disabled>Fix Json</button>
 
-                    </div>
-                    <div class="mb-3">
-                        <label class="btn btn-light">
-                            Upload JSON File
-                            <input type="file" id="jsonFileInput" hidden accept=".json">
-                        </label>
-                    </div>                   
-                </div>
-            </div>
-            <div class="editor-card">
-            <div class="editor-box">
-                    <label>Formatted Output</label>
-                    <div id="jsonOutput"></div>
-                    <div id="editorFindBar" class="editor-find-bar hidden">
-
-                        <!-- Find Section -->
-                        <button onclick="closeFindBar()" class="icon-btn close-btn" title="Close">
-                            <i class="fa fa-times"></i>
-                        </button>
-                        <div class="editor-card">
-                        <div class="find-group">
-                            <div class="input-wrapper">
-                                <input type="text" id="editorFind" placeholder="Find..." autocomplete="off" />
-                                <button id="searchBtn" class="icon-btn search-btn" title="Search">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-
-                            <button onclick="findPrev()" class="icon-btn nav-btn" title="Previous">
-                                <i class="fa fa-chevron-up"></i>
-                            </button>
-                            <button onclick="findNext()" class="icon-btn nav-btn" title="Next">
-                                <i class="fa fa-chevron-down"></i>
-                            </button>
-
-                            <span id="matchCount" class="match-counter">0 / 0</span>
-
-                            
                         </div>
+                        <div class="mb-3">
+                            <label class="btn btn-light">
+                                Upload JSON File
+                                <input type="file" id="jsonFileInput" hidden accept=".json">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="editor-card">
+                <div class="">
 
-                        <!-- Replace Section -->
-                        <div class="replace-group" id="replaceGroup">
-                            <div class="input-wrapper">
-                                <input type="text" id="editorReplace" placeholder="Replace..." />
-                                <div class="dropdown">
-                                    <button class="btn-light btn-dropdown">Actions <i class="fa fa-caret-down"></i></button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="replaceCurrent()">Replace</a>
-                                        <a href="#" onclick="replaceAll()">Replace All</a>
-                                        <a href="#" onclick="replaceKeyValue()">Replace Key-Value</a>
+                    <div class="editor-box">
+                        <label>Formatted Output</label>
+                        <div id="jsonOutput" class="editor"></div>
+                        <div id="editorFindBar" class="editor-find-bar hidden">
+
+                            <!-- Find Section -->
+                            <button onclick="closeFindBar()" class="icon-btn close-btn" title="Close">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            <div class="editor-card">
+                                <div class="find-group">
+                                    <div class="input-wrapper">
+                                        <input type="text" id="editorFind" placeholder="Find..." autocomplete="off" />
+                                        <button id="searchBtn" class="icon-btn search-btn" title="Search">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+
+                                    <button onclick="findPrev()" class="icon-btn nav-btn" title="Previous">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </button>
+                                    <button onclick="findNext()" class="icon-btn nav-btn" title="Next">
+                                        <i class="fa fa-chevron-down"></i>
+                                    </button>
+
+                                    <span id="matchCount" class="match-counter">0 / 0</span>
+
+
+                                </div>
+
+                                <!-- Replace Section -->
+                                <div class="replace-group" id="replaceGroup">
+                                    <div class="input-wrapper">
+                                        <input type="text" id="editorReplace" placeholder="Replace..." />
+                                        <div class="dropdown">
+                                            <button class="btn-light btn-dropdown">Actions <i class="fa fa-caret-down"></i></button>
+                                            <div class="dropdown-content">
+                                                <a href="#" onclick="replaceCurrent()">Replace</a>
+                                                <a href="#" onclick="replaceAll()">Replace All</a>
+                                                <a href="#" onclick="replaceKeyValue()">Replace Key-Value</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+                        <div class="button-group" aria-label="JSON tool actions">
+                            <div class="download-dropdown">
+                                <button class="download-btn btn btn-light" id="btnDownload" disabled>Download ▾</button>
+
+                                <div class="download-menu" disabled>
+                                    <button onclick="download('txt')">TXT</button>
+                                    <button onclick="download('json')">JSON</button>
+
+                                </div>
+                            </div>
+                            <button id="btnClear" class="btn btn-light" onclick="clearFields()" disabled>Clear</button>
+                            <button id="btnCopy" class="btn btn-light" onclick="copyOutput()" disabled>Copy</button>
+                            <button id="btnExpand" class="btn btn-light" disabled>Expand</button>
                         </div>
                     </div>
-                    <div class="button-group" aria-label="JSON tool actions">
-                        <div class="download-dropdown">
-                            <button class="download-btn btn btn-light" id="btnDownload" disabled>Download ▾</button>
-
-                            <div class="download-menu" disabled>
-                                <button onclick="download('txt')">TXT</button>
-                                <button onclick="download('json')">JSON</button>
-                               
-                            </div>
-                        </div>
-                        <button id="btnClear" class="btn btn-light" onclick="clearFields()" disabled>Clear</button>
-                        <button id="btnCopy" class="btn btn-light" onclick="copyOutput()" disabled>Copy</button>
-                        <button id="btnExpand" class="btn btn-light" disabled>Expand</button>
-                       </div>
                 </div>
             </div>
 
         </div>
-        
 
 
-         <p id="formattermessage" class="message" role="status" aria-live="polite"></p>
+
+        <p id="formattermessage" class="message" role="status" aria-live="polite"></p>
         <section class="seo-content">
             <h2>About JSON Formatter & Validator</h2>
             <p>
@@ -151,7 +155,7 @@
                 </div>
 
             </section>
-             <p>Check out our <a href="/json-comparer">JSON Comparer</a> or <a href="/json-converter">JSON Converter</a> for easy formatting.</p>
+            <p>Check out our <a href="/json-comparer">JSON Comparer</a> or <a href="/json-converter">JSON Converter</a> for easy formatting.</p>
 
         </section>
     </div>
@@ -159,7 +163,12 @@
 
 <script src="~/js/json-formatter.js"></script>
 @section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
     <!-- Primary Meta Tags -->
     <meta name="title" content="Free JSON Formatter & Validator Online - DevToolsZone">
     <meta name="description" content="Format, validate, beautify and minify JSON instantly with our free online JSON Formatter tool. Fast, secure, and easy-to-use JSON validator with error detection.">
@@ -168,21 +177,21 @@
     <meta name="robots" content="index, follow">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://yourdomain.com/json-formatter" />
+    <link rel="canonical" href="@fullUrl" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Free JSON Formatter & Validator Online">
     <meta property="og:description" content="Beautify, validate, and minify JSON instantly. 100% free online JSON Formatter with error highlighting.">
-    <meta property="og:url" content="https://yourdomain.com/json-formatter">
-    <meta property="og:image" content="https://yourdomain.com/images/json-formatter-preview.jpg">
+    <meta property="og:url" content="@fullUrl">
+    @*  <meta property="og:image" content="@@Configuration["AppSettings:BaseUrl"]/json-formatter-preview.jpg"> *@
     <meta property="og:site_name" content="DevToolsZone">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Free JSON Formatter & Validator Online">
     <meta name="twitter:description" content="Fast and secure JSON Formatter tool to beautify, validate and minify JSON data online.">
-    <meta name="twitter:image" content="https://yourdomain.com/images/json-formatter-preview.jpg">
+    @* <meta name="twitter:image" content="@Configuration["AppSettings:BaseUrl"]/images/json-formatter-preview.jpg"> *@
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -190,7 +199,7 @@
             "@@context": "https://schema.org",
             "@@type": "WebApplication",
             "name": "JSON Formatter & Validator",
-            "url": "https://yourdomain.com/json-formatter",
+             "url": "@fullUrl",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "All",
             "description": "Free online JSON Formatter tool to validate, beautify and minify JSON instantly.",

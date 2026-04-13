@@ -8,6 +8,7 @@
         "xml" => "JSON to XML Converter",
         _ => "Free Online JSON Converter – Convert JSON to C# / SQL /typescript /XML"
     };
+    ViewData["Title"] = pageTitle;
 }
 
 <div class="page-bg">
@@ -115,7 +116,12 @@
 
     <script src="~/js/json-converter.js"></script>
 @section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
     <!-- Primary Meta Tags -->
     <meta name="title" content="JSON to C#, SQL & TypeScript Converter Online - Free Code Generator">
     <meta name="description" content="Convert JSON to C#, SQL table schema, and TypeScript interfaces instantly. Free online JSON code converter tool for developers. Fast, accurate, and secure.">
@@ -124,21 +130,21 @@
     <meta name="robots" content="index, follow">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://yourdomain.com/json-converter" />
+    <link rel="canonical" href="@fullUrl" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="JSON to C#, SQL & TypeScript Converter Online">
     <meta property="og:description" content="Generate C# classes, SQL table scripts, and TypeScript interfaces from JSON instantly. 100% free developer tool.">
-    <meta property="og:url" content="https://yourdomain.com/json-converter">
-    <meta property="og:image" content="https://yourdomain.com/images/json-converter-preview.jpg">
+    <meta property="og:url" content="@fullUrl">
+    @* <meta property="og:image" content="https://yourdomain.com/images/json-converter-preview.jpg"> *@
     <meta property="og:site_name" content="DevToolsZone">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="JSON to C#, SQL & TypeScript Converter">
     <meta name="twitter:description" content="Free online JSON converter tool to generate C# models, SQL schemas, and TypeScript interfaces instantly.">
-    <meta name="twitter:image" content="https://yourdomain.com/images/json-converter-preview.jpg">
+   @*  <meta name="twitter:image" content="https://yourdomain.com/images/json-converter-preview.jpg"> *@
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -146,7 +152,7 @@
             "@@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "JSON Code Converter",
-            "url": "https://yourdomain.com/json-converter",
+            "url": "@fullUrl",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "All",
             "description": "Free online JSON converter tool to convert JSON to C# classes, SQL table schema, and TypeScript interfaces.",

@@ -97,6 +97,13 @@
     }
 </script>
 @section HeadContent {
+     @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
     <meta name="description" content="Learn about DevToolsZone, your free online toolkit for developers. Format JSON, validate data, calculate quickly, and more.">
     <meta name="keywords" content="DevToolsZone, developer tools, JSON formatter, online utilities, free tools, web tools">
 
@@ -104,13 +111,13 @@
     <meta property="og:title" content="About DevToolsZone - Free Online Developer Tools">
     <meta property="og:description" content="DevToolsZone offers free online tools for developers including JSON formatter, validators, calculators and more.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/about">
-    <meta property="og:image" content="https://yourdomain.com/images/seo-about.jpg">
+    <meta property="og:url" content="@fullUrl">
+    @* <meta property="og:image" content="https://yourdomain.com/images/seo-about.jpg"> *@
     <meta property="og:site_name" content="DevToolsZone">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About DevToolsZone - Free Online Developer Tools">
     <meta name="twitter:description" content="DevToolsZone offers free online tools for developers including JSON formatter, validators, calculators and more.">
-    <meta name="twitter:image" content="https://yourdomain.com/images/seo-about.jpg">
+   @*  <meta name="twitter:image" content="https://yourdomain.com/images/seo-about.jpg"> *@
 }

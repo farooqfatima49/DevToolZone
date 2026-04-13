@@ -72,8 +72,6 @@ function validateFileInput(file,msgId) {
     }
 }
 function downloadOutput(type,output) {
-    debugger
-   
     if (!output) {
         alert("Nothing to download");
         return;
@@ -93,7 +91,6 @@ function downloadOutput(type,output) {
             return;
         }
     }
-
     if (type === "xml") {
         mimeType = "application/xml";
         fileName += ".xml";
@@ -101,6 +98,9 @@ function downloadOutput(type,output) {
 
     if (type === "txt") {
         fileName += ".txt";
+    }
+    if (type === "application/javascript") {
+        fileName += ".js";
     }
 
     const blob = new Blob([data], { type: mimeType });
@@ -115,4 +115,15 @@ function downloadOutput(type,output) {
     document.body.removeChild(a);
 
     URL.revokeObjectURL(url);
+}
+function CopyOutput(output) {
+    output.select();
+    document.execCommand("copy");
+}
+function toggleMainButtons(hasText, inputButtons) {
+    inputButtons.forEach(btn => {
+        btn.disabled = !hasText;
+        btn.style.opacity = hasText ? 1 : 0.5;
+        btn.style.cursor = hasText ? "pointer" : "not-allowed";
+    });
 }

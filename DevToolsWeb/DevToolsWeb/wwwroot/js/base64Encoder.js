@@ -8,29 +8,19 @@ const jsonInput = document.getElementById("inputText");
 
 jsonInput.addEventListener("input", toggleButtons);
 function toggleButtons() {
-    const hasText = jsonInput.value.trim().length > 0;
-    encoderButtons.forEach(btn => {
-        btn.disabled = !hasText;
-        btn.style.opacity = hasText ? 1 : 0.5;
-        btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    });
+    const hasText = jsonInput.value.trim().length > 0;   
+    toggleMainButtons(hasText, encoderButtons);
 }
 const jsonOutput = document.getElementById("outputText");
 jsonOutput.addEventListener("input", () => {
     toggleOutputButtons()
 });
 function toggleOutputButtons() {
-    const hasText = jsonOutput.value.trim().length > 0;
-    outputButtons.forEach(btn => {
-        btn.disabled = !hasText;
-        btn.style.opacity = hasText ? 1 : 0.5;
-        btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    });
+    const hasText = jsonOutput.value.trim().length > 0;   
+    toggleMainButtons(hasText, outputButtons);
 }
 function encodeBase64() {
-
     const input = document.getElementById("inputText").value;
-
     try {
 
         const encoded = btoa(unescape(encodeURIComponent(input)));
@@ -39,13 +29,10 @@ function encodeBase64() {
     } catch {
         showMessage("Unable to encode the input.", "err", "encodermessage")       
     }
-
 }
-
 function decodeBase64() {
     const input = document.getElementById("inputText").value;
     try {
-
         const decoded = decodeURIComponent(escape(atob(input)));
         document.getElementById("outputText").value = decoded;
         toggleOutputButtons()
@@ -54,13 +41,8 @@ function decodeBase64() {
     }
 
 }
-
-function copyOutput() {
-
-    const output = document.getElementById("outputText");
-    output.select();
-    document.execCommand("copy");
-
+function copy() {
+    CopyOutput(document.getElementById("outputText"))
 }
 
 function clearFields(bit) {
@@ -77,11 +59,7 @@ function download(type) {
     const output = document.getElementById("outputText").value;
     downloadOutput(type, output)
 }
-//function downloadOutput() {
-//    debugger
-//    const output = document.getElementById("outputText").value;
-//    download("base64-output.txt", "encodermessage", output);   
-//}
+
 let fileInput = document.getElementById("encoderInput")
 fileInput.addEventListener("change", function (event) {
     const file = event.target.files[0];
