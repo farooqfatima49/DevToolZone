@@ -96,6 +96,11 @@ app.MapControllerRoute(
     pattern: "javascript-obfuscator",
     defaults: new { controller = "JavascriptFormatter", action = "Index" }
 );
+app.MapControllerRoute(
+    name: "tools",
+    pattern: "tools",
+    defaults: new { controller = "Home", action = "AllTools" }
+);
 app.UseResponseCompression();
 
 app.UseStaticFiles();

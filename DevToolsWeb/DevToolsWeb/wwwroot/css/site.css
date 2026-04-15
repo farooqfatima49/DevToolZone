@@ -1326,6 +1326,53 @@ seo-content {
 .navbar .container-fluid {
     padding-left: 200px;
 }
+.tools-section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+    .tools-section h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 28px;
+    }
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.tool-card {
+    display: block;
+    padding: 16px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    text-decoration: none;
+    color: #222;
+    transition: 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+    .tool-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        border-color: #cfcfcf;
+    }
+
+    .tool-card h3 {
+        margin: 0 0 6px 0;
+        font-size: 16px;
+    }
+
+    .tool-card p {
+        margin: 0;
+        font-size: 13px;
+        color: #666;
+        line-height: 1.4;
+    }
 
 /* ================== RESPONSIVE ================== */
 @media (min-width: 400px) {
@@ -1428,3 +1475,4 @@ seo-content {
         width: 100%;
     }
 }
+

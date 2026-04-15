@@ -1,0 +1,15 @@
+﻿@model IEnumerable<dynamic>
+<section class="seo-content">
+    <h2>Frequently Asked Questions</h2>
+
+ @foreach (var faq in Model)
+{  <div class="faq-item">
+            <button class="faq-question">@faq.Question</button>
+        <div class="faq-answer">
+            <p>
+                    @faq.Answer
+            </p>
+        </div>
+    </div>
+}
+</section>

@@ -1,12 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Free Online JSON Formatter & Validator – Format, Minify & Validate JSON";
+    var faqs = new List<dynamic>
+    {
+        new { Question = "What is a JSON Formatter and Validator?", Answer = "A JSON Formatter and Validator is a tool that formats raw JSON into a readable structure and checks for syntax errors. It helps developers debug and clean API responses quickly." },
+        new { Question = "Is this JSON formatter free to use?", Answer = "Yes, our JSON Formatter & Validator is completely free to use with no limitations, sign-ups, or hidden charges." },
+        new { Question = "Does this tool store my JSON data?", Answer = "No, your data is never stored or sent to any server. All processing happens directly in your browser for complete privacy." },
+        new { Question = "Can I format large JSON files?", Answer = " Yes, the tool is optimized to handle large JSON files efficiently with smooth formatting and expandable structure view." },
+        new { Question = "What is the difference between format and minify in JSON?", Answer = " Formatting makes JSON readable with proper indentation, while minifying removes spaces and reduces file size for production use." },
+        new { Question = "How do I fix invalid JSON using this tool?", Answer = "You can use the \"Fix JSON\" feature to automatically correct common syntax issues like missing commas, quotes, or brackets." },
+        new { Question = "Can I upload a JSON file instead of pasting it?", Answer = "Yes, you can upload a JSON file directly using the upload option and then format or validate it instantly." },
+        new { Question = "What features does this JSON tool provide?", Answer = " This tool provides formatting, validation, minification, fixing JSON errors, file upload support, copy, and download options." }
+    };
 }
 
-
 <div class="page-bg">
-
     <div class="glass-card">
-
         <h1>Free Online JSON Formatter & Validator</h1>
         <p class="subtitle">
             Format, validate, and minify JSON online. Free & secure JSON formatting tool.
@@ -102,9 +110,6 @@
             </div>
 
         </div>
-
-
-
         <p id="formattermessage" class="message" role="status" aria-live="polite"></p>
         <section class="seo-content">
             <h2>About JSON Formatter & Validator</h2>
@@ -129,32 +134,7 @@
                 <li>No data is stored on the server</li>
                 <li>Works on all modern browsers and devices</li>
             </ul>
-
-            <section class="seo-content">
-                <h2>Frequently Asked Questions</h2>
-
-                <div class="faq-item">
-                    <button class="faq-question">Is this JSON formatter safe?</button>
-                    <div class="faq-answer">
-                        <p>Yes, all formatting happens locally in your browser. Your data is never sent to any server.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Can I use it for large JSON files?</button>
-                    <div class="faq-answer">
-                        <p>Yes, it handles large JSON files efficiently and supports expandable/collapsible tree view.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Can I switch between Code and Tree mode?</button>
-                    <div class="faq-answer">
-                        <p>Yes, you can switch modes using the mode selector in the editor.</p>
-                    </div>
-                </div>
-
-            </section>
+            <partial name="~/Views/Shared/PartialViews/_FAQ.cshtml" model="faqs" />            
             <p>Check out our <a href="/json-comparer">JSON Comparer</a> or <a href="/json-converter">JSON Converter</a> for easy formatting.</p>
 
         </section>
@@ -163,51 +143,13 @@
 
 <script src="~/js/json-formatter.js"></script>
 @section HeadContent {
-    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-
-    @{
-        var baseUrl = Configuration["AppSettings:BaseUrl"];
-        var fullUrl = $"{baseUrl}{Context.Request.Path}";
-    }
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Free JSON Formatter & Validator Online - DevToolsZone">
-    <meta name="description" content="Format, validate, beautify and minify JSON instantly with our free online JSON Formatter tool. Fast, secure, and easy-to-use JSON validator with error detection.">
-    <meta name="keywords" content="JSON Formatter, JSON Validator, JSON Beautifier, JSON Minify, JSON Viewer, Online JSON Tool, Free JSON Formatter">
-    <meta name="author" content="DevToolsZone">
-    <meta name="robots" content="index, follow">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="@fullUrl" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Free JSON Formatter & Validator Online">
-    <meta property="og:description" content="Beautify, validate, and minify JSON instantly. 100% free online JSON Formatter with error highlighting.">
-    <meta property="og:url" content="@fullUrl">
-    @*  <meta property="og:image" content="@@Configuration["AppSettings:BaseUrl"]/json-formatter-preview.jpg"> *@
-    <meta property="og:site_name" content="DevToolsZone">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Free JSON Formatter & Validator Online">
-    <meta name="twitter:description" content="Fast and secure JSON Formatter tool to beautify, validate and minify JSON data online.">
-    @* <meta name="twitter:image" content="@Configuration["AppSettings:BaseUrl"]/images/json-formatter-preview.jpg"> *@
-
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-        {
-            "@@context": "https://schema.org",
-            "@@type": "WebApplication",
-            "name": "JSON Formatter & Validator",
-             "url": "@fullUrl",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "All",
-            "description": "Free online JSON Formatter tool to validate, beautify and minify JSON instantly.",
-            "offers": {
-                "@@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        }
-    </script>
+    <partial name="~/Views/Shared/PartialViews/_SeoMetaTags.cshtml" model="faqs" ,
+         view-data='new ViewDataDictionary(ViewData)
+         {
+             ["Title"] = "Free JSON Formatter & Validator Online",
+             ["Description"] = "Format, validate, beautify and minify JSON instantly with our free online JSON Formatter tool. Fast, secure, and easy-to-use JSON validator with error detection.",
+             ["keywords"] = "JSON Formatter, JSON Validator, JSON Beautifier, JSON Minify, JSON Viewer, Online JSON Tool, Free JSON Formatter",
+             ["image"]="json-formatter-preview.png"
+     }' />
 }
+

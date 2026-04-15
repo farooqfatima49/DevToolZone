@@ -1,0 +1,104 @@
+﻿<section class="tools-section">
+    <h2>All Developer Tools</h2>
+
+    <div class="tools-grid">
+
+        <a href="/json-formatter" class="tool-card">
+            <h3>JSON Formatter</h3>
+            <p>Format, validate and beautify JSON instantly.</p>
+        </a>
+
+        <a href="/json-comparer" class="tool-card">
+            <h3>JSON Comparer</h3>
+            <p>Compare two JSON objects and highlight differences.</p>
+        </a>
+        <a href="/json-converter" class="tool-card">
+            <h3>JSON Converter</h3>
+            <p>Convert JSON into multiple formats and structures instantly.</p>
+        </a>
+
+        <a href="/json-to-csharp" class="tool-card">
+            <h3>JSON to C# Converter</h3>
+            <p>Convert JSON into C# classes and models automatically.</p>
+        </a>
+
+        <a href="/json-to-typescript" class="tool-card">
+            <h3>JSON to TypeScript Converter</h3>
+            <p>Generate TypeScript interfaces from JSON data quickly.</p>
+        </a>
+
+        <a href="/json-to-sql" class="tool-card">
+            <h3>JSON to SQL Converter</h3>
+            <p>Convert JSON into SQL tables and insert statements.</p>
+        </a>
+
+        <a href="/json-to-xml" class="tool-card">
+            <h3>JSON to XML Converter</h3>
+            <p>Transform JSON data into structured XML format instantly.</p>
+        </a>
+        
+        <a href="/javascript-obfuscator" class="tool-card">
+            <h3>JS Obfuscator</h3>
+            <p>Protect JavaScript code by making it unreadable.</p>
+        </a>
+
+        <a href="/base64-encoder-decoder" class="tool-card">
+            <h3>Base64 Encoder</h3>
+            <p>Encode and decode Base64 strings and files.</p>
+        </a>
+
+        <!-- Add up to 30 tools like this -->
+
+    </div>
+</section>
+@section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+        var fullUrl = $"{baseUrl}{Context.Request.Path}";
+    }
+    <meta property="og:title" content="All Developer Tools - DevToolsWorld">
+    <meta property="og:description" content="Explore free online tools like JSON Formatter, Converter, Base64 Encoder, JavaScript Obfuscator and more.">
+    <meta property="og:url" content="@fullUrl">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="@Configuration["AppSettings:BaseUrl"]/images/tools-preview.png">
+<script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+          "@@type": "ItemList",
+      "name": "DevToolsWorld Online Tools",
+      "itemListElement": [
+        {
+              "@@type": "ListItem",
+          "position": 1,
+              "url": "@Configuration["AppSettings:BaseUrl"]/json-formatter",
+          "name": "JSON Formatter"
+        },
+        {
+              "@@type": "ListItem",
+          "position": 2,
+              "url": "@Configuration["AppSettings:BaseUrl"]/json-comparer",
+          "name": "JSON Comparer"
+        },
+        {
+              "@@type": "ListItem",
+          "position": 3,
+              "url": "@Configuration["AppSettings:BaseUrl"]/json-converter",
+          "name": "JSON Converter"
+        },
+        {
+              "@@type": "ListItem",
+          "position": 4,
+              "url": "@Configuration["AppSettings:BaseUrl"]/base64-encoder-decoder",
+          "name": "Base64 Encoder Decoder"
+        },
+        {
+              "@@type": "ListItem",
+          "position": 5,
+              "url": "@Configuration["AppSettings:BaseUrl"]/javascript-obfuscator",
+          "name": "JavaScript Obfuscator"
+        }
+      ]
+    }
+</script>
+}

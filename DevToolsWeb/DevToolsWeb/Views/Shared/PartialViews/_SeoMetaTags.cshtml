@@ -1,0 +1,62 @@
+﻿ @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+ @model IEnumerable<dynamic>
+@{
+    var baseUrl = Configuration["AppSettings:BaseUrl"];
+    var fullUrl = $"{baseUrl}{Context.Request.Path}";
+}
+
+<meta name="title" content="@ViewData["Title"] - DevToolsWorld">
+<meta name="description" content="@ViewData["Description"]">
+<meta name="keywords" content="@ViewData["keywords"]">
+<meta name="author" content="DevToolsWorld">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="@fullUrl" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="@ViewData["Title"]">
+<meta property="og:description" content="@ViewData["Description"]">
+<meta property="og:url" content="@fullUrl">
+<meta property="og:image" content="@Configuration["AppSettings:BaseUrl"]/images/@ViewData["image"]">
+<meta property="og:site_name" content="DevToolsWorld">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="@ViewData["Title"]">
+<meta name="twitter:description" content="@ViewData["Description"]">
+<meta name="twitter:image" content="@Configuration["AppSettings:BaseUrl"]/images/@ViewData["image"]">
+<script type="application/ld+json">
+    @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+                new
+                {
+                    @context = "https://schema.org",
+                    @type = "WebApplication",
+                    name = ViewData["Title"],
+                    url = fullUrl,
+                    applicationCategory = "DeveloperApplication",
+                    operatingSystem = "All",
+                    description = ViewData["Description"],
+                    offers = new
+                    {
+                        @type = "Offer",
+                        price = "0",
+                        priceCurrency = "USD"
+                    },
+                    mainEntity = Model.Select(f => new
+                    {
+                        @type = "Question",
+                        name = f.Question,
+                        acceptedAnswer = new
+                        {
+                            @type = "Answer",
+                            text = f.Answer
+                        }
+                    })
+                },
+                new System.Text.Json.JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                }
+            ))
+</script>

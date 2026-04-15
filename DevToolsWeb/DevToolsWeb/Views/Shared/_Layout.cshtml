@@ -32,7 +32,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="logo-wrapper">
-                <img src="~/images/logo.png" alt="DevTools Logo" class="logo">
+                <a asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo.png" alt="DevTools Logo" class="logo">
+                </a>
             </div>
             <div class="container-fluid">
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -142,7 +144,7 @@
                 <h6>Quick Access</h6>
                 <ul>
                     <li><a href="/">Home</a></li>
-                   @*  <li><a href="/tools">All Tools</a></li> *@
+                    <li><a href="/tools">All Tools</a></li>
                     <li><a href="/faq">FAQ</a></li>
                 </ul>
             </div>

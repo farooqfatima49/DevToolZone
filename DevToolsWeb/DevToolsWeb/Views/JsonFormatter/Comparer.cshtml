@@ -1,6 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Free Online JSON Formatter & Validator – Format, Minify & Validate JSON";
+    var faqs = new List<dynamic>
+    {
+    new { Question = "What is a JSON comparer tool?", Answer = "A JSON comparer is an online tool that allows you to compare two JSON objects or files, highlight differences, and validate JSON structure in real-time." },
+
+    new { Question = "How do I use this JSON diff tool?", Answer = "Paste your first JSON in the left editor and the second JSON in the right editor, then click \"Compare JSONs\". Differences will be highlighted automatically." },
+
+    new { Question = "Is this JSON comparer free?", Answer = "Yes, our JSON comparer is completely free and online. No registration or software installation is required." },
+
+    new { Question = "Can I compare large JSON files?", Answer = "Yes, the tool supports large JSON objects, though extremely large files may take a few seconds to process." },
+
+    new { Question = "What if my JSON is invalid?", Answer = "If your JSON is invalid, the tool shows an error message with the exact line and character, so you can fix it before comparing." },
+
+    new { Question = "Does this JSON comparer show differences visually?", Answer = "Yes, the tool highlights differences between JSON files with color indicators, making it easy to identify added, removed, or modified values instantly." },
+
+    new { Question = "Is my JSON data secure when using this tool?", Answer = "Yes, all processing is done in your browser. Your JSON data is not uploaded or stored on any server, ensuring complete privacy and security." }
+    };
 }
+
 <div class="page-bg">
     <div class="glass-card">
 
@@ -78,49 +95,8 @@
                 <li>Software testers validating configurations</li>
                 <li>Students learning JSON structure and syntax</li>
             </ul>
-            <section class="seo-content">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-item">
-                    <button class="faq-question">What is a JSON comparer tool?</button>
-                    <div class="faq-answer">
-                        <p>
-                            A JSON comparer is an online tool that allows you to compare two JSON objects or files, highlight differences, and validate JSON structure in real-time.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">How do I use this JSON diff tool?</button>
-                    <div class="faq-answer">
-                        <p>
-                            Paste your first JSON in the left editor and the second JSON in the right editor, then click "Compare JSONs". Differences will be highlighted automatically.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Is this JSON comparer free?</button>
-                    <div class="faq-answer">
-                        <p>
-                            Yes, our JSON comparer is completely free and online. No registration or software installation is required.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Can I compare large JSON files?</button>
-                    <div class="faq-answer">
-                        <p>
-                            Yes, the tool supports large JSON objects, though extremely large files may take a few seconds to process.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">What if my JSON is invalid?</button>
-                    <div class="faq-answer">
-                        <p>
-                            If your JSON is invalid, the tool shows an error message with the exact line and character, so you can fix it before comparing.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <partial name="~/Views/Shared/PartialViews/_FAQ.cshtml" model="faqs" />
+           
             <p>Check out our <a href="/json-formatter">JSON Formatter</a> or <a href="/json-converter">JSON Converter</a> for easy formatting.</p>
 
         </section>
@@ -128,51 +104,12 @@
 </div>
 <script src="~/js/json-comparer.js"></script>
 @section HeadContent {
-    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-
-    @{
-        var baseUrl = Configuration["AppSettings:BaseUrl"];
-        var fullUrl = $"{baseUrl}{Context.Request.Path}";
-    }
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Free JSON Comparer Online - Compare JSON & Highlight Differences">
-    <meta name="description" content="Compare two JSON files online and highlight differences instantly. Free JSON Comparer tool with side-by-side comparison and difference detection.">
-    <meta name="keywords" content="JSON Comparer, Compare JSON Online, JSON Diff Tool, JSON Difference Checker, JSON Compare Tool, Online JSON Diff">
-    <meta name="author" content="DevToolsZone">
-    <meta name="robots" content="index, follow">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="@fullUrl" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Free JSON Comparer Online - Highlight Differences Instantly">
-    <meta property="og:description" content="Use our free JSON Comparer tool to compare two JSON objects and detect differences with highlighted changes. Fast and secure.">
-    <meta property="og:url" content="@fullUrl">
-    @* <meta property="og:image" content="https://yourdomain.com/images/json-comparer-preview.jpg"> *@
-    <meta property="og:site_name" content="DevToolsZone">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Free JSON Comparer Online">
-    <meta name="twitter:description" content="Compare two JSON files side by side and highlight exact differences instantly. 100% free JSON diff tool.">
-    @* <meta name="twitter:image" content="https://yourdomain.com/images/json-comparer-preview.jpg"> *@
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-        {
-            "@@context": "https://schema.org",
-            "@@type": "WebApplication",
-            "name": "JSON Comparer Tool",
-            "url": "@fullUrl",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "All",
-            "description": "Free online JSON comparer tool to compare two JSON files and highlight differences instantly.",
-            "offers": {
-                "@@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        }
-    </script>
+    <partial name="~/Views/Shared/PartialViews/_SeoMetaTags.cshtml" model="faqs" ,
+             view-data='new ViewDataDictionary(ViewData)
+         {
+             ["Title"] = "Free JSON Comparer Online - Highlight Differences Instantly",
+             ["Description"] = "Compare two JSON files online and highlight differences instantly. Free JSON Comparer tool with side-by-side comparison and difference detection.",
+             ["keywords"] = "JSON Comparer, Compare JSON Online, JSON Diff Tool, JSON Difference Checker, JSON Compare Tool, Online JSON Diff",
+             ["image"]="json-comparer-preview.png"
+     }' />
 }

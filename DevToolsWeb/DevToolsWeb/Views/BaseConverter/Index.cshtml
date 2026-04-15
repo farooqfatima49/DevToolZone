@@ -1,5 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Free Online JSON Formatter & Validator – Format, Minify & Validate JSON";
+    var faqs = new List<dynamic>
+{
+    new { Question = "What is Base64 encoding?", Answer = "Base64 encoding converts binary or text data into an ASCII string format using a specific character set. It is commonly used to safely transmit data through systems that only support text." },
+
+    new { Question = "What is the difference between Base64 encoding and encryption?", Answer = "Base64 encoding is not encryption. It only changes data into a readable text format for safe transmission, while encryption protects data using a key and makes it unreadable without decryption." },
+
+    new { Question = "Is Base64 encoding secure?", Answer = "No. Base64 encoding is not encryption. It only converts data into a different format. Anyone can decode Base64 back to its original form." },
+
+    new { Question = "Where is Base64 used?", Answer = "Base64 is widely used in web development, APIs, email attachments, and embedding images in HTML or CSS." },
+
+    new { Question = "How do I decode a Base64 string?", Answer = "Paste the Base64 encoded text into the input field and click the Decode button. The original text will appear in the output area." },
+
+    new { Question = "Can I encode files using Base64?", Answer = "Yes. You can upload a file using the upload button, and the tool will convert its content into Base64 format." }
+};
 }
 <div class="page-bg">
     <div class="glass-card">
@@ -62,62 +76,13 @@
             </ol>
 
             <h2>Common Uses of Base64</h2>
-
             <ul>
                 <li>Encoding API credentials</li>
                 <li>Email attachments</li>
                 <li>Embedding images in HTML or CSS</li>
                 <li>Secure data transfer</li>
             </ul>
-            <section class="seo-content">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-item">
-                    <button class="faq-question">What is Base64 encoding?</button>
-                    <div class="faq-answer">
-                        <p>
-                            Base64 encoding converts binary or text data into an ASCII string format using a specific character set.
-                            It is commonly used to safely transmit data through systems that only support text.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Is Base64 encoding secure?</button>
-                    <div class="faq-answer">
-                        <p>
-                            No. Base64 encoding is not encryption. It only converts data into a different format.
-                            Anyone can decode Base64 back to its original form.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Where is Base64 used?</button>
-                    <div class="faq-answer">
-                        <p>
-                            Base64 is widely used in web development, APIs, email attachments, and embedding images in HTML or CSS.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">How do I decode a Base64 string?</button>
-                    <div class="faq-answer">
-                        <p>
-                            Paste the Base64 encoded text into the input field and click the <strong>Decode</strong> button.
-                            The original text will appear in the output area.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Can I encode files using Base64?</button>
-                    <div class="faq-answer">
-                        <p>
-                            Yes. You can upload a file using the upload button, and the tool will convert its content into Base64 format.
-                        </p>
-                    </div>
-                </div>
-
-                
-            </section>
+            <partial name="~/Views/Shared/PartialViews/_FAQ.cshtml" model="faqs" />
             <p>Check out our <a href="/json-formatter">JSON Formatter</a> or <a href="/json-to-csharp">JSON to C# Converter</a> for easy formatting.</p>
 
         </section>
@@ -125,42 +90,13 @@
 </div>
 <script src="~/js/base64encoder.js"></script>
 @section HeadContent {
-    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
-
-    @{
-        var baseUrl = Configuration["AppSettings:BaseUrl"];
-
-        var fullUrl = $"{baseUrl}{Context.Request.Path}";
-    }
-    <title>Base64 Encode Decode Online | Free Base64 Encoder Decoder Tool</title>
-
-    <meta name="description" content="Free online Base64 encoder and decoder tool. Encode text to Base64 or decode Base64 strings instantly. Fast, secure and easy to use developer utility.">
-
-    <meta name="keywords" content="base64 encode, base64 decode, base64 encoder online, base64 decoder online, encode base64, decode base64, developer tools">
-
-    <meta name="robots" content="index, follow">
-
-    <link rel="canonical" href="@fullUrl" />
-
-    <meta property="og:title" content="Base64 Encode Decode Online Tool">
-    <meta property="og:description" content="Encode text to Base64 or decode Base64 strings instantly using this free developer tool.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="@fullUrl">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Base64 Encode Decode Online Tool">
-    <meta name="twitter:description" content="Convert text to Base64 or decode Base64 instantly with this free online tool.">
-
-    <script type="application/ld+json">
-        {
-         "@@context": "https://schema.org",
-         "@@type": "WebApplication",
-         "name": "Base64 Encoder Decoder",
-         "url": "@fullUrl",
-         "applicationCategory": "DeveloperApplication",
-         "operatingSystem": "All",
-         "description": "Free online Base64 encoder and decoder tool for developers to encode or decode Base64 strings instantly."
-        }
-    </script>
-
+    <partial name="~/Views/Shared/PartialViews/_SeoMetaTags.cshtml" model="faqs" ,
+             view-data='new ViewDataDictionary(ViewData)
+         {
+             ["Title"] = "Base64 Encode Decode Online | Free Base64 Encoder Decoder Tool",
+             ["Description"] = "Free online Base64 encoder and decoder tool. Encode text to Base64 or decode Base64 strings instantly. Fast, secure and easy to use developer utility.",
+             ["keywords"] = "base64 encode, base64 decode, base64 encoder online, base64 decoder online, encode base64, decode base64, developer tools",
+             ["image"]="json-formatter-preview.png"
+     }' />
 }
+   

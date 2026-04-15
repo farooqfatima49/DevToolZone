@@ -36,6 +36,11 @@ namespace DevToolsWeb.Controllers
         {
             return View();
         }
+        [Route("tools")]
+        public IActionResult AllTools()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -9,6 +9,24 @@
         _ => "Free Online JSON Converter – Convert JSON to C# / SQL /typescript /XML"
     };
     ViewData["Title"] = pageTitle;
+    var faqs = new List<dynamic>
+    {
+        new { Question = "Which conversions does this tool support?", Answer = "This tool supports JSON to C#, JSON to SQL, JSON to TypeScript, JSON to XML, and JSON formatting & validation." },
+
+        new { Question = "Is my data safe while converting JSON?", Answer = "Yes, your data is completely safe because all conversions happen in your browser and nothing is stored on our servers." },
+
+        new { Question = "Can I convert large JSON files?", Answer = "Yes, you can convert large JSON files depending on your browser performance since all processing is done client-side." },
+
+        new { Question = "Does JSON to C# conversion generate classes?", Answer = "Yes, the tool automatically generates C# model classes based on your JSON structure." },
+
+        new { Question = "Can I convert nested JSON structures?", Answer = "Yes, nested JSON objects and arrays are fully supported for all conversion types including C#, SQL, and TypeScript." },
+
+        new { Question = "Do I need to install any software?", Answer = "No installation is required. This tool runs directly in your browser." },
+
+        new { Question = "Is this tool free?", Answer = "Yes, it is completely free." },
+
+        new { Question = "Is my JSON stored?", Answer = "No, all processing is done client-side." }
+    };
 }
 
 <div class="page-bg">
@@ -16,7 +34,7 @@
 
         <!-- Header -->
         <h1>@pageTitle</h1>
-        <p class="subtitle">Convert JSON to C# classes .typescript or SQL scripts online instantly. Free, fast, and easy JSON to C# / typescript / SQL converter.</p>
+        <p class="subtitle">Convert JSON to C# classes, typescript or SQL scripts online instantly. Free, fast, and easy JSON to C# / typescript / SQL converter.</p>
        
         <!-- Toolbar -->
         <div class="converter-toolbar">
@@ -82,14 +100,57 @@
             </ol>
 
             <h2>Example</h2>
-    <pre>
-    {
-        "name": "Fatima",
-        "age": 25
-    }
-    </pre>
-            <section class="seo-content">
+                <pre>
+                {
+                    "name": "John",
+                    "age": 25
+                }
+                </pre>
+            <partial name="~/Views/Shared/PartialViews/_FAQ.cshtml" model="faqs" />
+
+            @* <section class="seo-content">
                 <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <button class="faq-question">Which conversions does this tool support?</button>
+                    <div class="faq-answer">
+                        <p>This tool supports JSON to C#, JSON to SQL, JSON to TypeScript, JSON to XML, and JSON formatting & validation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Is my data safe while converting JSON?</button>
+                    <div class="faq-answer">
+                        <p>Yes, your data is completely safe because all conversions happen in your browser and nothing is stored on our servers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Can I convert large JSON files?</button>
+                    <div class="faq-answer">
+                        <p>Yes, you can convert large JSON files depending on your browser performance since all processing is done client-side.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Does JSON to C# conversion generate classes?</button>
+                    <div class="faq-answer">
+                        <p>Yes, the tool automatically generates C# model classes based on your JSON structure.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Can I convert nested JSON structures?</button>
+                    <div class="faq-answer">
+                        <p>Yes, nested JSON objects and arrays are fully supported for all conversion types including C#, SQL, and TypeScript.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Do I need to install any software?</button>
+                    <div class="faq-answer">
+                        <p>No installation is required. This tool runs directly in your browser.</p>
+                    </div>
+                </div>
                 <div class="faq-item">
                     <button class="faq-question">Is this tool free?</button>
                     <div class="faq-answer">
@@ -102,7 +163,7 @@
                         <p>No, all processing is done client-side.</p>
                     </div>
                 </div>
-           </section>
+           </section> *@
             <p>Check out our <a href="/json-formatter">JSON Formatter</a> or <a href="/json-comparer">JSON Comparer</a> for easy formatting.</p>
 
         </section>
@@ -114,58 +175,15 @@
         document.getElementById("converterType").value = selectedType;
     </script>
 
-    <script src="~/js/json-converter.js"></script>
+<script src="~/js/json-converter.js"></script>
 @section HeadContent {
-    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
-    @{
-        var baseUrl = Configuration["AppSettings:BaseUrl"];
-        var fullUrl = $"{baseUrl}{Context.Request.Path}";
-    }
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="JSON to C#, SQL & TypeScript Converter Online - Free Code Generator">
-    <meta name="description" content="Convert JSON to C#, SQL table schema, and TypeScript interfaces instantly. Free online JSON code converter tool for developers. Fast, accurate, and secure.">
-    <meta name="keywords" content="JSON to C#, JSON to SQL, JSON to TypeScript, JSON to TS Interface, JSON to C# Class, JSON Code Converter, JSON to Model Generator">
-    <meta name="author" content="DevToolsZone">
-    <meta name="robots" content="index, follow">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="@fullUrl" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="JSON to C#, SQL & TypeScript Converter Online">
-    <meta property="og:description" content="Generate C# classes, SQL table scripts, and TypeScript interfaces from JSON instantly. 100% free developer tool.">
-    <meta property="og:url" content="@fullUrl">
-    @* <meta property="og:image" content="https://yourdomain.com/images/json-converter-preview.jpg"> *@
-    <meta property="og:site_name" content="DevToolsZone">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="JSON to C#, SQL & TypeScript Converter">
-    <meta name="twitter:description" content="Free online JSON converter tool to generate C# models, SQL schemas, and TypeScript interfaces instantly.">
-   @*  <meta name="twitter:image" content="https://yourdomain.com/images/json-converter-preview.jpg"> *@
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-        {
-            "@@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "JSON Code Converter",
-            "url": "@fullUrl",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "All",
-            "description": "Free online JSON converter tool to convert JSON to C# classes, SQL table schema, and TypeScript interfaces.",
-            "featureList": [
-                "JSON to C# Class Generator",
-                "JSON to SQL Table Generator",
-                "JSON to TypeScript Interface Generator"
-            ],
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        }
-    </script>
+    <partial name="~/Views/Shared/PartialViews/_SeoMetaTags.cshtml" model="faqs" ,
+             view-data='new ViewDataDictionary(ViewData)
+         {
+             ["Title"] = "JSON to C#, SQL & TypeScript Converter Online",
+             ["Description"] = "Convert JSON to C#, SQL table schema, and TypeScript interfaces instantly. Free online JSON code converter tool for developers. Fast, accurate, and secure.",
+             ["keywords"] = "JSON to C#, JSON to SQL, JSON to TypeScript, JSON to TS Interface, JSON to C# Class, JSON Code Converter, JSON to Model Generator",
+             ["image"]="json-formatter-preview.png"
+     }' />
 }
