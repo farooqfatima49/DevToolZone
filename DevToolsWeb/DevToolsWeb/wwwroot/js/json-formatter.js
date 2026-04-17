@@ -19,8 +19,8 @@ const options = {
     }
 };
 
-const editor = new JSONEditor(container, options);
-const editor1 = new JSONEditor(container1, options);
+const editor = new JSONEditor(container, options);//output container
+const editor1 = new JSONEditor(container1, options);//input container
 // -------------------- Buttons --------------------
 const btnFormat = document.getElementById("btnFormat");
 const btnValidate = document.getElementById("btnValidate");
@@ -35,7 +35,7 @@ const textareaButtons = [btnFormat, btnValidate, btnFix, btnMinify];
 
 // -------------------- Update Buttons State --------------------
 function updateToggleButton() {
-    // Enable button only in tree mode
+   // Enable button only in tree mode
     btnExpand.disabled = editor.getMode() !== 'tree';
     btnExpand.style.opacity = btnExpand.disabled ? 0.5 : 1;
     btnExpand.style.cursor = btnExpand.disabled ? 'not-allowed' : 'pointer';
@@ -59,47 +59,44 @@ function expandCollapse() {
 }
 
 function toggleButtons() {
+    debugger
     let hasText = false;
     try {
-        const json = editor1.get();
+        const json = editor1.getText();
         if (json && (Object.keys(json).length > 0 || Array.isArray(json) && json.length > 0)) {
             hasText = true;
         }
     } catch (e) {
+        debugger
         // invalid JSON, still rely on inputText
     }
     toggleMainButtons(hasText, textareaButtons);
-    //textareaButtons.forEach(btn => {
-    //    btn.disabled = !hasText;
-    //    btn.style.opacity = hasText ? 1 : 0.5;
-    //    btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    //});
+    
 }
 
 function updateEditorButtons() {
     let hasText = false;
     try {
-        const json = editor.get();
+        const json = editor.getText();
         if (json && (Object.keys(json).length > 0 || Array.isArray(json) && json.length > 0)) {
             hasText = true;
         }
     } catch (e) {
         // invalid JSON, still rely on inputText
     }
-    toggleMainButtons(hasText, editorButtons);
-    //editorButtons.forEach(btn => {
-    //    btn.disabled = !hasText;
-    //    btn.style.opacity = hasText ? 1 : 0.5;
-    //    btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    //});
+    toggleMainButtons(hasText, editorButtons);    
 }
 
 // -------------------- JSON Functions --------------------
 
 function formatJson() {
+    debugger
     try {
         const input = editor1.getText();//JSON.stringify(editor1.get(), null, 2) ;//document.getElementById("jsonInput").value;        
-        const parsed = JSON.parse(input);
+        let parsed = JSON.parse(input);
+        if (typeof parsed === "string") {
+            parsed = JSON.parse(parsed);
+        }
         editor.set(parsed);
         toggleButtons()
         showMessage("Valid JSON formatted successfully ✅", "success","formattermessage");
@@ -109,12 +106,13 @@ function formatJson() {
     updateEditorButtons();
 }
 function minifyJson() {
+    debugger
     try {
         const input = editor1.getText();//editor1.get(); //document.getElementById("jsonInput").value;
         const parsed = JSON.parse(input);
         const minified = JSON.stringify(parsed);
-        editor.set(parsed);
-        editor1.set(minified);
+       // editor.set(parsed);
+        editor.set(minified);
         //document.getElementById("jsonInput").value = minified;
         showMessage("JSON minified successfully ✅", "success", "formattermessage");
     } catch (e) {
@@ -125,6 +123,7 @@ function minifyJson() {
     updateEditorButtons();
 }
 function validateJson() {
+    debugger
     const rawInput = editor1.getText();//document.getElementById("jsonInput").value;
 
     if (!rawInput.trim()) {
@@ -175,13 +174,15 @@ function replaceKeyValue(obj, key, newValue) {
 }
 
 function autoFixJson(input) {
+    debugger
     let fixed = input;
     fixed = fixed.replace(/'/g, '"'); // single → double quotes
     fixed = fixed.replace(/,(\s*[}\]])/g, '$1'); // trailing commas
     return fixed;
 }
-function fixJson() {   
-    const input = editor1.get(); //document.getElementById("jsonInput").value;
+function fixJson() {  
+    debugger
+    const input = editor1.getText(); 
     let fixedInput = autoFixJson(input);
     try {
         const parsed = JSON.parse(fixedInput);

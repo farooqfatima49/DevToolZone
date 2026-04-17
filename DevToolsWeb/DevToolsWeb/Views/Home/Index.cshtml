@@ -3,9 +3,11 @@
 }
 
 <section class="hero">
-    <h1>All Your Online Tools in One Place</h1>
-    <p>Fast, Free & Easy-to-use utilities</p>
-    <a href="#tools" class="btn">Explore Tools</a>
+    <div class="hero-content">
+        <h1>All Your Online Tools in One Place</h1>
+        <p>Fast, Free & Easy-to-use utilities</p>
+        <a href="#tools" class="btn">Explore Tools</a>
+    </div>
 </section>
 
 <!-- TOOLS SECTION -->
@@ -50,5 +52,13 @@
     <p>Looking for more tools?</p>
     <a href="/tools" class="btn btn-primary">Explore All Tools</a>
 </div>
+@section HeadContent {
+    @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+    @model IEnumerable<dynamic>
+    @{
+        var baseUrl = Configuration["AppSettings:BaseUrl"];
+    }
+    <link rel="canonical" href="@baseUrl/" />
+}
 
 

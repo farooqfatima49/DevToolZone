@@ -50,9 +50,16 @@ faqBtns.forEach(button => {
     });
 });
 function showMessage(text, type, id) {
-    const msg = document.getElementById(id);
-    msg.innerText = text;
-    msg.style.color = type == "err" ? "red" :"green";
+    debugger
+    if (text == "" || text == null) {
+        document.getElementById(id).innerText =''
+    }
+    else {
+        const msg = document.getElementById(id);
+        msg.innerText = text;
+        msg.style.color = type == "err" ? "red" : "green";
+    }
+    
 }
 function uploadJsonFile(event, jsonEditor, input) {
     const json = JSON.parse(event.target.result);   // validate JSON

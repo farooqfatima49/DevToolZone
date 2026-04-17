@@ -20,7 +20,7 @@ namespace DevToolsWeb.Controllers
                 "/json-converter",
                 "/json-to-csharp","/json-to-typescript","/json-to-sql",
                 "/contact","/base64-encoder-decoder","/javascript-obfuscator"
-                ,"/about","/terms-and-conditions","/privacy-policy","/faq"
+                ,"/about","/terms-and-conditions","/privacy-policy","/faq","/tools"
             };
 
             XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";

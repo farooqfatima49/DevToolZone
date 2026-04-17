@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,9 +23,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
-
+    
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @RenderSection("HeadContent", required: false)
 </head>
 
@@ -43,32 +45,44 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                       @*  <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li> *@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="JsonFormatter" asp-action="Index">JSON Formatter</a>
+                        <li class="nav-item dropdown mega-menu">
+                            <a class="nav-link text-dark">Tools ▾</a>
+
+                            <div class="mega-menu-content">
+
+                                <div class="menu-column">
+                                    <h6>JSON Tools</h6>
+                                    <a href="/json-formatter">JSON Formatter</a>
+                                    <a href="/json-comparer">JSON Comparer</a>                        
+                                </div>
+
+                                <div class="menu-column">
+                                    <h6>Converters</h6>
+                                    <a href="/json-to-csharp">JSON to C#</a>
+                                    <a href="/json-to-typescript">JSON to TypeScript</a>
+                                    <a href="/json-to-sql">JSON to SQL</a>
+                                    <a href="/json-to-xml">JSON to XML</a>
+                                </div>
+
+                                <div class="menu-column">
+                                    <h6>Encoders</h6>
+                                    <a href="/base64-encoder-decoder">Base64 Encoder</a>
+                                </div>
+
+                                <div class="menu-column">
+                                    <h6>Code Tools</h6>
+                                    <a href="/javascript-obfuscator">JS Obfuscator</a>
+                                </div>
+
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="JsonFormatter" asp-action="Comparer">JSON Comparer</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-dark dropbtn" asp-area="" asp-controller="JsonFormatter" asp-action="Converter">JSON Converter</a>
-                            <ul class="dropdown-content">
-                                <li><a href="/json-to-csharp" class="droplnk">JSON to C#</a></li>
-                                <li><a href="/json-to-typescript" class="droplnk">JSON to TypeScript</a></li>
-                                <li><a href="/json-to-sql" class="droplnk">JSON to SQL</a></li>
-                                <li><a href="/json-to-xml" class="droplnk">JSON to XML</a></li>
-                               
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="BaseConverter" asp-action="Index">Base64 Encoder/Decoder</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="JavascriptFormatter" asp-action="Index">Javascript Obfuscator</a>
+                            <a class="nav-link text-dark" href="/about">About Us</a>
                         </li>
                         
+                        <li>
+                            <a class="nav-link text-dark" href="/contact">Contact</a>
+                        </li>                        
                     </ul>
                     <div class="top-bar">
                         <div class="theme-toggle">
@@ -89,23 +103,22 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="footer border-top">
         <div class="container footer-container">
 
             <!-- About -->
-            <div class="footer-column" style="line-height: normal;text-wrap: auto;">
+            <div class="footer-column" style="line-height: normal;">
                 <h5>DevToolsWorld</h5>
                 <p>
                     DevToolsWorld provides free online developer tools including
-                    JSON formatter, JSON validator, converters, and productivity
-                    utilities designed to help developers work faster and smarter.
+                    JSON formatter, validators, converters, encoders, and productivity
+                    utilities to help developers work faster and smarter.
                 </p>
             </div>
 
-            <!-- Tools -->
+            <!-- JSON Tools -->
             <div class="footer-column">
-                <h6>Developer Tools</h6>
+                <h6>JSON Tools</h6>
                 <ul class="footer-links">
                     <li><a href="/json-formatter">JSON Formatter</a></li>
                     <li><a href="/json-comparer">JSON Comparer</a></li>
@@ -118,20 +131,23 @@
                             <li><a href="/json-to-xml" class="droplnk">JSON to XML</a></li>
                         </ul>
                     </li>
-                  </ul>
-                
+                </ul>
             </div>
+          
+
+            <!-- Encoding & Code Tools -->
             <div class="footer-column">
+                <h6>Encoding & Code Tools</h6>
                 <ul class="footer-links">
                     <li><a href="/base64-encoder-decoder">Base64 Encoder/Decoder</a></li>
-                    <li><a href="/javascript-obfuscator">Javascript Obfuscator</a></li>
+                    <li><a href="/javascript-obfuscator">JavaScript Obfuscator</a></li>
                 </ul>
             </div>
 
             <!-- Resources -->
             <div class="footer-column">
                 <h6>Resources</h6>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="/about">About Us</a></li>
                     <li><a href="/privacy-policy">Privacy Policy</a></li>
                     <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
@@ -142,7 +158,7 @@
             <!-- Quick Links -->
             <div class="footer-column">
                 <h6>Quick Access</h6>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="/">Home</a></li>
                     <li><a href="/tools">All Tools</a></li>
                     <li><a href="/faq">FAQ</a></li>
@@ -155,6 +171,7 @@
             © 2026 DevToolsWorld — Free Online Developer Tools
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js?v=1323" asp-append-version="true"></script>

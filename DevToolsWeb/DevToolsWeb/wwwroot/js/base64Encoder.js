@@ -20,6 +20,7 @@ function toggleOutputButtons() {
     toggleMainButtons(hasText, outputButtons);
 }
 function encodeBase64() {
+    showMessage('', '', "encodermessage");
     const input = document.getElementById("inputText").value;
     try {
 
@@ -31,6 +32,7 @@ function encodeBase64() {
     }
 }
 function decodeBase64() {
+    showMessage('', '', "encodermessage");
     const input = document.getElementById("inputText").value;
     try {
         const decoded = decodeURIComponent(escape(atob(input)));
@@ -46,6 +48,7 @@ function copy() {
 }
 
 function clearFields(bit) {
+    showMessage('', '', "encodermessage");
     if (bit == 1) {
         document.getElementById("outputText").value = "";
         toggleOutputButtons()

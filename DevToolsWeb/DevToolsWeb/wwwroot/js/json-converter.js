@@ -25,6 +25,7 @@ const textareaButtons = [btnConvert, btnClear, btnCopy, btnDownload];
 btnConvert.addEventListener("click", convertJson);
 
 btnClear.addEventListener("click", function () {
+    showMessage('', '', "converterMessage");
     editor.set({});
     document.getElementById("outputEditor").textContent = "";
     toggleButtons()
@@ -44,19 +45,14 @@ function toggleButtons() {
     } catch {
         hasText = false;
     }
-    toggleMainButtons(hasText, textareaButtons);
-    //textareaButtons.forEach(btn => {
-    //    btn.disabled = !hasText;
-    //    btn.style.opacity = hasText ? 1 : 0.5;
-    //    btn.style.cursor = hasText ? "pointer" : "not-allowed";
-    //});
-
+    toggleMainButtons(hasText, textareaButtons);    
 }
 // ================================
 // Main Convert Function
 // ================================
 
 function convertJson() {
+    showMessage('', '', "converterMessage");
     const type = document.getElementById("converterType").value;
 
     try {
